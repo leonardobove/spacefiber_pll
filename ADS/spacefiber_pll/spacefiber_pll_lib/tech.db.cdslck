@@ -1,0 +1,16 @@
+#
+# Edit Lock-Stake file. CAUTION: Please do not change.
+#
+# Information about current Edit Lock Owner.
+#
+LockStakeVersion               1.1
+LoginName                      leona
+HostName                       HP-LEO
+ProcessIdentifier              10140
+ProcessCreationTime_UTC        1736639744
+ProcessCreationTime_Readable   Sun Jan 12 00:55:44 2025 W. Europe Standard Time
+AppIdentifier                  OA File System Design Manager
+OSType                         win32
+ReasonForPlacingEditLock       OpenAccess edit lock
+FilePathUsedToEditLock         C:\Users\leona\Desktop\spacefiber_pll\ADS\spacefiber_pll\spacefiber_pll_lib\tech.db.cdslck
+TimeEditLocked                 Sun Jan 12 00:59:13 2025 W. Europe Standard Time

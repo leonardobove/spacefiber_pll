@@ -1,0 +1,5 @@
+INCLUDE $HPEESOF_DIR/oalibs/analog_rf.defs
+INCLUDE $HPEESOF_DIR/oalibs/dsp.defs
+DEFINE spacefiber_pll_lib spacefiber_pll_lib
+ASSIGN spacefiber_pll_lib libMode shared
+INCLUDE $HOME/Desktop/CIW_ADS/sg25h4_students/ads/lib.defs

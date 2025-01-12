@@ -1,0 +1,53 @@
+; Top Design: "spacefiber_pll_lib:pll_ideal:schematic"
+; Netlisted using Hierarchy Policy: "Standard_ic"
+
+Options ResourceUsage=yes UseNutmegFormat=no EnableOptim=no TopDesignName="spacefiber_pll_lib:pll_ideal:schematic" DcopOutputNodeVoltages=yes DcopOutputPinCurrents=yes DcopOutputAllSweepPoints=no DcopOutputDcopType=0
+#uselib "sml" , "PhaseFreqDetCP"
+PhaseFreqDetCP:PFD1  Vref Vvco_div N__4 N__4 Ihigh=40 uA Ilow=40 uA DeadTime=0 psec Jitter=0 psec 
+#uselib "sml" , "VCO_DivideByN"
+VCO_DivideByN:VCO1  N__4 0 Vvco_div VCO_CL freq_vco_CL VCO_Freq=2 GHz * _v1 F0=5.95 GHz N=40 Rout=50 Ohm Power=dbmtow(0) Delay=0 
+
+HB:Env1 Freq[1]=fvco \
+ Order[1]=1 \
+  MaxOrder=0 StatusLevel=1 FundOversample=2 UseGear=yes EnvIntegOrder=2 \
+ EnvBandwidth=1 EnvWarnPoorFit=yes EnvUsePoorFit=yes SweepVar="time" DevOpPtLevel=0 \
+ EnvFitDisableCache=no SweepPlan="Env1_stim" OutputPlan="Env1_Output"
+
+OutputPlan:Env1_Output \
+       Type="Output" \
+       UseNodeNestLevel=yes \
+       NodeNestLevel=2 \
+       UseEquationNestLevel=yes \
+       EquationNestLevel=2 \
+       UseSavedEquationNestLevel=yes \
+       SavedEquationNestLevel=2 \
+       UseDeviceCurrentNestLevel=no \
+       DeviceCurrentNestLevel=0 \
+       DeviceCurrentDeviceType="All" \
+       DeviceCurrentSymSyntax=yes \
+       UseCurrentNestLevel=yes \
+       CurrentNestLevel=999 \
+       UseDeviceVoltageNestLevel=no \
+       DeviceVoltageNestLevel=0 \
+       DeviceVoltageDeviceType="All" 
+
+SweepPlan:Env1_stim Stop=tstop Step=1 nsec
+
+Tran:Env1_tran HB_Sol=1 SteadyState=1 StatusLevel=3 \
+ Freq[1]=fvco \
+ Order[1]=1 \
+ OutputPlan="Env1_Output"
+
+Component:tahb_Env1 Module="ATAHB" Type="ModelExtractor" Tran_Analysis="Env1_tran" HB_Analysis="Env1"
+
+R:R1  N__4 N__9 R=12 kOhm Noise=yes 
+C:C1  N__9 0 C=8 pF 
+C:C2  N__4 0 C=1.0 pF 
+#uselib "sml" , "PM_DemodTuned"
+PM_DemodTuned:DEMOD1  VCO_CL PN_CL Sensitivity=180/pi Fnom=fvco Rout=50 Ohm 
+V_Source:SRC1  Vref 0 Type="V_DC" Vdc=Vref SaveCurrent=1 
+
+fref=156.25 MHz
+tstop=100 usec
+fvco=6.25 GHz
+Vref=phaserad(-exp(j*2*pi*fref*time))

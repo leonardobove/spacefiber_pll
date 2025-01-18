@@ -1,4 +1,4 @@
-<ADSWorkspace Revision="6" Version="100">
+<ADSWorkspace Revision="11" Version="100">
     <Workspace Name="">
         <LibraryDefs Name="lib.defs" />
         <ConfigFile Name="dds.cfg" />
@@ -73,14 +73,17 @@
         <Library Name="spacefiber_pll_lib" />
         <Library Name="SG25_dev" />
         <Library Name="TL_SG25" />
+        <LibDM Name="SG25_dev:data.dm" />
+        <LibDM Name="TL_SG25:data.dm" />
         <Cell Name="spacefiber_pll_lib:charge_pump" />
+        <Cell Name="spacefiber_pll_lib:charge_pump_test" />
+        <Cell Name="spacefiber_pll_lib:loop_filter" />
+        <Cell Name="spacefiber_pll_lib:pll_cp_real" />
         <Cell Name="spacefiber_pll_lib:pll_ideal" />
         <Substrate Name="SG25_dev:SG25H.subst" />
         <Substrate Name="SG25_dev:SG25H_ViaMerge.subst" />
         <LibDM Name="SG25_dev:data.dm" />
         <LibDM Name="TL_SG25:data.dm" />
-        <Cell Name="spacefiber_pll_lib:pll_cp_real" />
-        <Cell Name="spacefiber_pll_lib:loop_filter" />
-        <Cell Name="spacefiber_pll_lib:charge_pump_test" />
+        <Cell Name="spacefiber_pll_lib:OpAmp" />
     </Workspace>
 </ADSWorkspace>

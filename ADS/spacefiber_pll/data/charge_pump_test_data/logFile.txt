@@ -1,0 +1,117 @@
+
+hpeesofsim (*) 595.shp Oct 31 2023, MINT version 5
+    (64-bit windows built: Tue Oct 31, 2023 22:23:19 +0000)
+
+
+***** Simulation started at Sat Jan 18 18:14:22 2025
+      Running on host: "LAPTOP-9FLTR55I"
+      In Directory: "C:\Project_CIW\spacefiber_pll\ADS\spacefiber_pll\data"
+      Process ID: 16172
+
+Warning detected by hpeesofsim during netlist parsing.
+    In file `C:/PDK_ADS/sg25h4_students/tech/spectre/SG25_passives.lib' at, or just before, line 439.
+    Parameter name 'm' is reserved for the subcircuit multiplicity factor. So a formal parameter of that name is ignored.
+
+Warning detected by hpeesofsim during netlist parsing.
+    Diode model `DMAINMOD' level=dmain_level - expression not allowed here.
+
+Warning detected by hpeesofsim during netlist parsing.
+    Diode model `DREVMOD' level=drev_level - expression not allowed here.
+
+Warning detected by hpeesofsim during netlist parsing.
+    Diode model `DSUBMOD' level=dsub_level - expression not allowed here.
+
+Warning detected by hpeesofsim during netlist parsing.
+    Skipping instance `OpAmp.svaricap.LowL' of type `paramtest', 
+    In file `C:/PDK_ADS/sg25h4_students/tech/SG25_MOS/library/spectre/sg25_svaricap_mod.scs' at, or just before, line 86.
+
+Warning detected by hpeesofsim during netlist parsing.
+    Skipping instance `OpAmp.svaricap.HiL' of type `paramtest', 
+    In file `C:/PDK_ADS/sg25h4_students/tech/SG25_MOS/library/spectre/sg25_svaricap_mod.scs' at, or just before, line 87.
+
+Warning detected by hpeesofsim during netlist parsing.
+    Skipping instance `OpAmp.svaricap.LowW' of type `paramtest', 
+    In file `C:/PDK_ADS/sg25h4_students/tech/SG25_MOS/library/spectre/sg25_svaricap_mod.scs' at, or just before, line 88.
+
+Warning detected by hpeesofsim during netlist parsing.
+    Skipping instance `OpAmp.svaricap.HiW' of type `paramtest', 
+    In file `C:/PDK_ADS/sg25h4_students/tech/SG25_MOS/library/spectre/sg25_svaricap_mod.scs' at, or just before, line 89.
+
+Warning detected by hpeesofsim during netlist parsing.
+    Skipping instance `OpAmp.svaricap.LowNX' of type `paramtest', 
+    In file `C:/PDK_ADS/sg25h4_students/tech/SG25_MOS/library/spectre/sg25_svaricap_mod.scs' at, or just before, line 90.
+
+Warning detected by hpeesofsim during netlist parsing.
+    Skipping instance `OpAmp.svaricap.HiNX' of type `paramtest', 
+    In file `C:/PDK_ADS/sg25h4_students/tech/SG25_MOS/library/spectre/sg25_svaricap_mod.scs' at, or just before, line 91.
+
+
+NXP SiMKit (loader release 5.7, device release 5.7)
+
+
+Model psp1020, SiMKit release 5.7, Copyright NXP Semiconductors 2015.
+Warning detected by hpeesofsim in topology check during circuit set up.
+    Number of nodes with only one device attached (topology corrected): 6
+
+
+
+TRAN Tran1[1] <spacefiber_pll_lib:charge_pump_test:schematic>   time=(0 s->1 us)
+Warning detected by hpeesofsim in  during TRAN analysis `Tran1'.
+
+    Time=9.726055e-10: Unable to solve 'cross()' to expression tolerance.  
+    vams instance: NAND2_2.NAND
+      vams module: LOGIC_GATE_P
+
+Warning detected by hpeesofsim in  during TRAN analysis `Tran1'.
+
+    Time=9.736155e-10: Unable to solve 'cross()' to expression tolerance.  
+    vams instance: NAND2_2.NAND
+      vams module: LOGIC_GATE_P
+
+Warning detected by hpeesofsim in  during TRAN analysis `Tran1'.
+
+    Time=7.372592e-09: Unable to solve 'cross()' to expression tolerance.  
+    vams instance: NAND2_2.NAND
+      vams module: LOGIC_GATE_P
+
+Warning detected by hpeesofsim in  during TRAN analysis `Tran1'.
+
+    Time=7.373602e-09: Unable to solve 'cross()' to expression tolerance.  
+    vams instance: NAND2_2.NAND
+      vams module: LOGIC_GATE_P
+
+Warning detected by hpeesofsim in  during TRAN analysis `Tran1'.
+
+    Time=1.377261e-08: Unable to solve 'cross()' to expression tolerance.  
+    vams instance: NAND2_2.NAND
+      vams module: LOGIC_GATE_P
+
+Warning detected by hpeesofsim in  during TRAN analysis `Tran1'.
+
+    Time=1.377362e-08: Unable to solve 'cross()' to expression tolerance.  
+    vams instance: NAND2_2.NAND
+      vams module: LOGIC_GATE_P
+
+Warning detected by hpeesofsim in  during TRAN analysis `Tran1'.
+
+    Time=2.017261e-08: Unable to solve 'cross()' to expression tolerance.  
+    vams instance: NAND2_2.NAND
+      vams module: LOGIC_GATE_P
+
+Warning detected by hpeesofsim in  during TRAN analysis `Tran1'.
+
+    Time=2.017362e-08: Unable to solve 'cross()' to expression tolerance.  
+    vams instance: NAND2_2.NAND
+      vams module: LOGIC_GATE_P
+
+Warning detected by hpeesofsim in  during TRAN analysis `Tran1'.
+
+    Time=2.657261e-08: Unable to solve 'cross()' to expression tolerance.  
+    vams instance: NAND2_2.NAND
+      vams module: LOGIC_GATE_P
+
+
+
+Resource usage:
+  Total stopwatch time     =    30.89 seconds.
+

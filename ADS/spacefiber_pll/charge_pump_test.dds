@@ -10,7 +10,7 @@ ddoId = get_new(ddsId, "Object");
 // DataDisplay Object:
 	set(ddoId, "Path", dds_get_exec_path(what_file(0)));
 	set(ddoId, "Name", dds_get_exec_file(what_file(0)));
-	set(ddoId, "FileModifiedDateAndTime", "2025-01-19T11:04:29Z");
+	set(ddoId, "FileModifiedDateAndTime", "2025-01-19T19:03:38Z");
 	set(ddoId, "FileCreatedDateAndTime", "2025-01-18T11:29:59Z");
 	dssId = get(ddoId, "DatasetServer");
 // Default Dataset
@@ -367,7 +367,7 @@ goId0 = get_new(pageId, "Plot");
 // Graphical Object:
 	set(goId0, "Right", 10725);
 	set(goId0, "Bottom", 4254);
-	set(goId0, "Left", 6375);
+	set(goId0, "Left", 6304);
 	set(goId0, "Top", 1250);
 	set(goId0, "Zrot", 0);
 	set(goId0, "Yrot", 0);
@@ -381,7 +381,7 @@ goId0 = get_new(pageId, "Plot");
 	set(goId0, "FillColor", 0);
 // Plot base...
 	set(goId0, "LegendOnOff", TRUE);
-	set(goId0, "LeftMargin", 500);
+	set(goId0, "LeftMargin", 571);
 	set(goId0, "RightMargin", 100);
 	set(goId0, "TopMargin", 125);
 	set(goId0, "BottomMargin", 504);
@@ -428,9 +428,9 @@ axisID = get_new(goId0, "Axis", ddsYaxis, "Y Axis");
 		 set(axisID, "LineType", 0);
 		 set(axisID, "TickFontSize", 112);
 		 set(axisID, "AutoscaleOnOff", TRUE);
-		 set(axisID, "MinValue", -0.008);
-		 set(axisID, "MaxValue", 0.008);
-		 set(axisID, "StepSize", 0.002);
+		 set(axisID, "MinValue", -0.001);
+		 set(axisID, "MaxValue", 0.0015);
+		 set(axisID, "StepSize", 0.0005);
 		 set(axisID, "Logarithmic", FALSE);
 		 set(axisID, "Font", "Arial For CAE");
 		 set(axisID, "Format", ddsFormatAutomatic);
@@ -1070,7 +1070,7 @@ traceID = get_new(goId0, "Trace", "Qb_intern", "X Axis", "Y Axis");
 ddWinId = get_new(ddsId, "Window", 176, 78, 1536, 864);
 	set(ddWinId, "Object", ddoId);
 	set(ddWinId, "CurrentPage", 8766781);
-	set(ddWinId, "PageViewRect_8766781", list(1303, 8193, 15880, 312));
+	set(ddWinId, "PageViewRect_8766781", list(1314, 8845, 17442, 125));
 	set(ddWinId, "Frame", list(176, 78, 1536, 864));
 	set(ddWinId, "Maximized", FALSE);
 	set(ddWinId, "ForegroundColor", 0);

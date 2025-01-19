@@ -1,0 +1,65 @@
+
+hpeesofsim (*) 595.shp Oct 31 2023, MINT version 5
+    (64-bit windows built: Tue Oct 31, 2023 22:23:19 +0000)
+
+
+***** Simulation started at Sun Jan 19 20:01:22 2025
+      Running on host: "LAPTOP-9FLTR55I"
+      In Directory: "C:\Project_CIW\spacefiber_pll\ADS\spacefiber_pll\data"
+      Process ID: 112
+
+Warning detected by hpeesofsim during netlist parsing.
+    In file `C:/PDK_ADS/sg25h4_students/tech/spectre/SG25_passives.lib' at, or just before, line 439.
+    Parameter name 'm' is reserved for the subcircuit multiplicity factor. So a formal parameter of that name is ignored.
+
+Warning detected by hpeesofsim during netlist parsing.
+    Diode model `DMAINMOD' level=dmain_level - expression not allowed here.
+
+Warning detected by hpeesofsim during netlist parsing.
+    Diode model `DREVMOD' level=drev_level - expression not allowed here.
+
+Warning detected by hpeesofsim during netlist parsing.
+    Diode model `DSUBMOD' level=dsub_level - expression not allowed here.
+
+Warning detected by hpeesofsim during netlist parsing.
+    Skipping instance `OpAmp.svaricap.LowL' of type `paramtest', 
+    In file `C:/PDK_ADS/sg25h4_students/tech/SG25_MOS/library/spectre/sg25_svaricap_mod.scs' at, or just before, line 86.
+
+Warning detected by hpeesofsim during netlist parsing.
+    Skipping instance `OpAmp.svaricap.HiL' of type `paramtest', 
+    In file `C:/PDK_ADS/sg25h4_students/tech/SG25_MOS/library/spectre/sg25_svaricap_mod.scs' at, or just before, line 87.
+
+Warning detected by hpeesofsim during netlist parsing.
+    Skipping instance `OpAmp.svaricap.LowW' of type `paramtest', 
+    In file `C:/PDK_ADS/sg25h4_students/tech/SG25_MOS/library/spectre/sg25_svaricap_mod.scs' at, or just before, line 88.
+
+Warning detected by hpeesofsim during netlist parsing.
+    Skipping instance `OpAmp.svaricap.HiW' of type `paramtest', 
+    In file `C:/PDK_ADS/sg25h4_students/tech/SG25_MOS/library/spectre/sg25_svaricap_mod.scs' at, or just before, line 89.
+
+Warning detected by hpeesofsim during netlist parsing.
+    Skipping instance `OpAmp.svaricap.LowNX' of type `paramtest', 
+    In file `C:/PDK_ADS/sg25h4_students/tech/SG25_MOS/library/spectre/sg25_svaricap_mod.scs' at, or just before, line 90.
+
+Warning detected by hpeesofsim during netlist parsing.
+    Skipping instance `OpAmp.svaricap.HiNX' of type `paramtest', 
+    In file `C:/PDK_ADS/sg25h4_students/tech/SG25_MOS/library/spectre/sg25_svaricap_mod.scs' at, or just before, line 91.
+
+
+NXP SiMKit (loader release 5.7, device release 5.7)
+
+
+Model psp1020, SiMKit release 5.7, Copyright NXP Semiconductors 2015.
+
+HB Env1[1] <spacefiber_pll_lib:pll_cp_real:schematic>   time=(0 s->3 us)
+Warning detected by hpeesofsim during DC analysis `Env1'.
+    Circuit converged after a virtual resistance of 1 TOhms 
+    was added between each node and ground, and a virtual 
+    resistance of 1 pOhms was inserted in each current branch. 
+    Possible causes include floating nodes or missing ground.
+
+.........................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................
+
+Resource usage:
+  Total stopwatch time     =    18.03 seconds.
+

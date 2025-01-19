@@ -59,10 +59,13 @@ define charge_pump ( Qa  Qa_n  Qb  Qb_n  Vdd  Vd )
 simulator lang = spectre
 X18 (Vdd sub_n) ntap1 R=262.847 l=780n w=780n
 simulator lang = ads
-OpAmp:X16  Vd N__53 N__53 Vdd 0 
+OpAmp:X16  Vd N__51 N__51 Vdd 0 
 simulator lang = spectre
-N18 (Vd Qb Vs sub!) nmos w=2u l=960n ng=2 rfmode=0 ad=0 as=0 pd=0 ps=0 m=1
-N19 (N__53 Qb_n Vs sub!) nmos w=2u l=960n ng=2 rfmode=0 ad=0 as=0 pd=0 ps=0 m=1
+N18 (N__70 Qb Vs sub!) nmos w=4u l=240n ng=4 rfmode=0 ad=0 as=0 pd=0 ps=0 m=1
+N19 (N__75 Qb_n Vs sub!) nmos w=4u l=240n ng=4 rfmode=0 ad=0 as=0 pd=0 ps=0 m=1
+simulator lang = ads
+I_Source:SRC1  Vdd N__74 Type="I_DC" Idc=400 uA 
+simulator lang = spectre
 X2 (sub! 0) ptap1 R=262.847 l=780n w=780n
 global 0 sub!
 include "C:/PDK_ADS/sg25h4_students/tech/spectre/mismatch.scs"
@@ -78,28 +81,35 @@ include "C:/PDK_ADS/sg25h4_students/tech/spectre/SG25_passives.lib"
 include "C:/PDK_ADS/sg25h4_students/tech/spectre/SG25_inductors.lib"
 include "C:/PDK_ADS/sg25h4_students/tech/spectre/SG25_diodes.lib"
 include "C:/PDK_ADS/sg25h4_students/tech/spectre/SG25_esd.lib"
-P15 (N__53 Qa N__74 sub_n) pmos w=4u l=480n ng=4 rfmode=0 ad=0 as=0 pd=0 ps=0 m=1
-P17 (Vd Qa_n N__74 sub_n) pmos w=4u l=480n ng=4 rfmode=0 ad=0 as=0 pd=0 ps=0 m=1
 simulator lang = ads
-I_Source:SRC1  Vdd N__74 Type="I_DC" Idc=40 uA 
-I_Source:SRC2  Vs 0 Type="I_DC" Idc=40 uA 
+I_Source:SRC2  Vs 0 Type="I_DC" Idc=400 uA 
+simulator lang = spectre
+P15 (N__73 Qa N__74 sub_n) pmos w=8u l=240n ng=8 rfmode=0 ad=0 as=0 pd=0 ps=0 m=1
+P17 (N__71 Qa_n N__74 sub_n) pmos w=8u l=240n ng=8 rfmode=0 ad=0 as=0 pd=0 ps=0 m=1
+N20 (N__51 Vdd N__75 sub!) nmos w=4u l=240n ng=4 rfmode=0 ad=0 as=0 pd=0 ps=0 m=1
+P18 (N__51 0 N__73 sub_n) pmos w=4u l=240n ng=4 rfmode=0 ad=0 as=0 pd=0 ps=0 m=1
+P19 (Vd 0 N__71 sub_n) pmos w=8u l=240n ng=8 rfmode=0 ad=0 as=0 pd=0 ps=0 m=1
+N21 (Vd Vdd N__70 sub!) nmos w=4u l=240n ng=4 rfmode=0 ad=0 as=0 pd=0 ps=0 m=1
+simulator lang = ads
 end charge_pump
 
 ; Library Name: spacefiber_pll_lib
 ; Cell Name: loop_filter
 ; View Name: schematic
-define loop_filter ( Vout  Vout__Vout  gnd ) 
+define loop_filter ( Vin  Vin__Vout  gnd ) 
 ;parameters 
-R:R1  Vout N__2 R=R Noise=yes 
-C:C2  Vout gnd C=C2 
+R:R1  Vin N__2 R=R Noise=yes 
+C:C2  N__3 gnd C=C2 
 C:C1  N__2 gnd C=C1 
 
 R=12KOhm
 C1=8 pF
 C2=1 pF
-Short:PinShort__Vout  Vout__Vout Vout Mode=0 SaveCurrent=no
+Short:I_Probe1  Vin N__3 Mode=0 SaveCurrent=yes 
+Short:PinShort__Vout  Vin__Vout Vin Mode=0 SaveCurrent=no
 end loop_filter
 
+charge_pump:X6  Qa Qa_n Qb Qb_n Vdd N__1 
 #uselib "sml" , "VCO_DivideByN"
 VCO_DivideByN:VCO1  Vd 0 Vvco_div VCO_CL freq_vco_CL VCO_Freq=2 GHz * _v1 F0=5.95 GHz N=40 Rout=50 Ohm Power=dbmtow(0) Delay=0 
 
@@ -142,9 +152,12 @@ PM_DemodTuned:DEMOD1  VCO_CL PN_CL Sensitivity=180/pi Fnom=fvco Rout=50 Ohm
 V_Source:SRC1  Vref 0 Type="V_DC" Vdc=Vref SaveCurrent=1 
 
 fref=156.25 MHz
-tstop=100 usec
+Vdd=2.5V
+tstop=3 usec
 fvco=6.25 GHz
 Vref=phaserad(-exp(j*2*pi*fref*time))
-PhaseFreqDet2:PFD2  Vref Vvco_div N__15 N__0 N__12 N__4 Vhigh=2.5 V Vlow=0 V DeadTime=0 psec Jitter=0 psec 
+PhaseFreqDet2:PFD2  Vref Vvco_div Qa Qb_n Qa_n Qb Vhigh=2.5 V Vlow=0 V DeadTime=0 psec Jitter=0 psec 
 V_Source:SRC2  Vdd 0 Type="V_DC" Vdc=2.5 V SaveCurrent=1 
-charge_pump:X6  N__15 N__12 N__4 N__0 Vdd N__18 
+Short:I_Probe1  N__1 N__18 Mode=0 SaveCurrent=yes 
+
+D=0.5

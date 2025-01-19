@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<DCOPData Simulator="hpeesofsim" Version="1.0" Time="dom gen 12 22:21:04 2025">
+<DCOPData Time="dom gen 19 19:48:29 2025" Simulator="hpeesofsim" Version="1.0">
  <Controller name="Env1_(DC)">
   <SweepCondition>
    <P>time: 0.0000000000000000e+00</P>
@@ -10,7 +10,6 @@
    <V>0: 0.0000000000000000e+00</V>
    <V>DEMOD1.in: 0.0000000000000000e+00</V>
    <V>DEMOD1.out: 0.0000000000000000e+00</V>
-   <V>N__4: 0.0000000000000000e+00</V>
    <V>N__9: 0.0000000000000000e+00</V>
    <V>PFD1._net134: 0.0000000000000000e+00</V>
    <V>PFD1._net136: -3.1415926535897931e+00</V>
@@ -27,6 +26,7 @@
    <V>VCO1.vco: 0.0000000000000000e+00</V>
    <V>VCO1.vcon: 0.0000000000000000e+00</V>
    <V>VCO_CL: 0.0000000000000000e+00</V>
+   <V>Vd: 0.0000000000000000e+00</V>
    <V>Vref: -3.1415926535897931e+00</V>
    <V>Vvco_div: 0.0000000000000000e+00</V>
    <V>freq_vco_CL: 5.9500000000000002e+00</V>

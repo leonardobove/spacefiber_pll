@@ -1,9 +1,14 @@
 <!DOCTYPE SaveWorkspaceState>
 <SaveWorkspaceState>
     <Windows>
-        <Schematic geom="1,0,3,516,146,1351,662,1920,1080" lib="spacefiber_pll_lib" cell="charge_pump_test" view="schematic" x1="-1" width="1920" y1="-9" height="991"/>
-        <Schematic geom="1,0,3,536,166,1351,662,1920,1080" lib="spacefiber_pll_lib" cell="charge_pump" view="schematic" x1="-1" width="1920" y1="-9" height="991"/>
+        <Schematic x1="-1" geom="1,0,3,516,146,1351,662,1920,1080" lib="spacefiber_pll_lib" height="991" y1="-9" view="schematic" cell="charge_pump_test" width="1920"/>
+        <Schematic x1="-1" geom="1,0,3,536,166,1351,662,1920,1080" lib="spacefiber_pll_lib" height="991" y1="-9" view="schematic" cell="charge_pump" width="1920"/>
+        <Schematic x1="-1" geom="1,0,3,556,186,1351,662,1920,1080" lib="spacefiber_pll_lib" height="991" y1="-9" view="schematic" cell="charge_pump" width="1920"/>
+        <Schematic x1="-1" geom="1,0,3,576,206,1351,662,1920,1080" lib="spacefiber_pll_lib" height="991" y1="-9" view="schematic" cell="pll_ideal" width="1920"/>
+        <Schematic x1="-1" geom="1,0,3,596,226,1351,662,1920,1080" lib="spacefiber_pll_lib" height="991" y1="-9" view="schematic" cell="pll_cp_real" width="1920"/>
         <DDS name="charge_pump_test.dds"/>
+        <DDS name="pll_ideal.dds"/>
+        <DDS name="pll_cp_real.dds"/>
     </Windows>
     <MainWindowTab tab="1"/>
 </SaveWorkspaceState>

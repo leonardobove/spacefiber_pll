@@ -1,5 +1,9 @@
 <!DOCTYPE SaveWorkspaceState>
 <SaveWorkspaceState>
-    <Windows/>
+    <Windows>
+        <Schematic geom="1,0,3,516,146,1351,662,1920,1080" lib="spacefiber_pll_lib" cell="charge_pump_test" view="schematic" x1="-1" width="1920" y1="-9" height="991"/>
+        <Schematic geom="1,0,3,536,166,1351,662,1920,1080" lib="spacefiber_pll_lib" cell="charge_pump" view="schematic" x1="-1" width="1920" y1="-9" height="991"/>
+        <DDS name="charge_pump_test.dds"/>
+    </Windows>
     <MainWindowTab tab="1"/>
 </SaveWorkspaceState>

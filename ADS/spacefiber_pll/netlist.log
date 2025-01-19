@@ -1,7 +1,7 @@
-; Top Design: "spacefiber_pll_lib:charge_pump_test:schematic"
+; Top Design: "spacefiber_pll_lib:pll_cp_real:schematic"
 ; Netlisted using Hierarchy Policy: "Standard_ic"
 
-Options ResourceUsage=yes UseNutmegFormat=no EnableOptim=no TopDesignName="spacefiber_pll_lib:charge_pump_test:schematic" DcopOutputNodeVoltages=yes DcopOutputPinCurrents=yes DcopOutputAllSweepPoints=no DcopOutputDcopType=0
+Options ResourceUsage=yes UseNutmegFormat=no EnableOptim=no TopDesignName="spacefiber_pll_lib:pll_cp_real:schematic" DcopOutputNodeVoltages=yes DcopOutputPinCurrents=yes DcopOutputAllSweepPoints=no DcopOutputDcopType=0
 simulator lang = spectre
 global 0 sub!
 simulator lang = ads
@@ -10,7 +10,14 @@ simulator lang = ads
 ; View Name: schematic
 define OpAmp ( Vpos  Vneg  Vout  Vdd  Vss ) 
 ;parameters 
-I_Source:SRC1  Vdd N__28 Type="I_DC" Idc=4 uA 
+simulator lang = spectre
+P6 (Vout N__3 Vdd sub_n) pmos w=48u l=500n ng=48 rfmode=0 ad=0 as=0 pd=0 ps=0 m=2
+P5 (N__3 N__3 Vdd sub_n) pmos w=48u l=500n ng=48 rfmode=0 ad=0 as=0 pd=0 ps=0 m=2
+N12 (Vout Vneg N__16 sub!) nmos w=2u l=500n ng=2 rfmode=0 ad=0 as=0 pd=0 ps=0 m=2
+N11 (N__3 Vpos N__16 sub!) nmos w=2u l=500n ng=2 rfmode=0 ad=0 as=0 pd=0 ps=0 m=2
+N10 (N__16 N__28 Vss sub!) nmos w=10u l=500n ng=10 rfmode=0 ad=0 as=0 pd=0 ps=0 m=2
+simulator lang = ads
+I_Source:SRC1  Vdd N__28 Type="I_DC" Idc=15 uA 
 simulator lang = spectre
 global 0 sub!
 include "C:/PDK_ADS/sg25h4_students/tech/spectre/mismatch.scs"
@@ -26,32 +33,36 @@ include "C:/PDK_ADS/sg25h4_students/tech/spectre/SG25_passives.lib"
 include "C:/PDK_ADS/sg25h4_students/tech/spectre/SG25_inductors.lib"
 include "C:/PDK_ADS/sg25h4_students/tech/spectre/SG25_diodes.lib"
 include "C:/PDK_ADS/sg25h4_students/tech/spectre/SG25_esd.lib"
+N9 (N__28 N__28 Vss sub!) nmos w=10u l=500n ng=10 rfmode=0 ad=0 as=0 pd=0 ps=0 m=2
 X3 (sub! 0) ptap1 R=262.847 l=780n w=780n
-N9 (N__28 N__28 Vss sub!) nmos w=2u l=480n ng=2 rfmode=0 ad=0 as=0 pd=0 ps=0 m=1
-N10 (N__16 N__28 Vss sub!) nmos w=20u l=480n ng=20 rfmode=0 ad=0 as=0 pd=0 ps=0 m=1
-N11 (N__3 Vpos N__16 sub!) nmos w=20u l=480n ng=20 rfmode=0 ad=0 as=0 pd=0 ps=0 m=1
-N12 (Vout Vneg N__16 sub!) nmos w=20u l=480n ng=20 rfmode=0 ad=0 as=0 pd=0 ps=0 m=1
-P5 (N__3 N__3 Vdd sub_n) pmos w=40u l=480n ng=40 rfmode=0 ad=0 as=0 pd=0 ps=0 m=1
-P6 (Vout N__3 Vdd sub_n) pmos w=40u l=480n ng=40 rfmode=0 ad=0 as=0 pd=0 ps=0 m=1
 X5 (Vdd sub_n) ntap1 R=262.847 l=780n w=780n
 simulator lang = ads
 end OpAmp
 
-; Library Name: ads_rflib
-; Cell Name: V_Probe
+; Library Name: ads_behavioral
+; Cell Name: PhaseFreqDet2
 ; View Name: schematic
-define V_Probe ( P1 ) 
-parameters 
-Short:Short1  P1 net Mode=0 SaveCurrent=no 
-end V_Probe
+define PhaseFreqDet2 ( N__0  N__5  N__6  N__4  N__3  N__2 ) 
+parameters  Vhigh=5 V  Vlow=0 V  DeadTime=0 psec  Jitter=0 psec 
+FDD:FDD6P1  N__0 0 N__6 0 N__5 0 N__4 0 N__3 0 N__2 0  I[1,0]=0.0  V[2,0]=Vlow + n1  I[3,0]=0.0  V[4,0]=Vhigh - n2  V[5,0]=Vhigh - n1  V[6,0]=Vlow + n2  Trig[1]=_xcross(1,0.5,1)  Trig[2]=_xcross(3,0.5,1) + setDT(0.0) 
+
+ns=_phase_freq(1,2,DeadTime,Jitter)
+n1=(Vhigh-Vlow)*real(ns)
+n2=(Vhigh-Vlow)*imag(ns)
+end PhaseFreqDet2
 
 ; Library Name: spacefiber_pll_lib
 ; Cell Name: charge_pump
 ; View Name: schematic
 define charge_pump ( Qa  Qa_n  Qb  Qb_n  Vdd  Vd ) 
 ;parameters 
-I_Source:SRC1  Vdd N__74 Type="I_DC" Idc=4 uA 
 simulator lang = spectre
+X18 (Vdd sub_n) ntap1 R=262.847 l=780n w=780n
+simulator lang = ads
+OpAmp:X16  Vd N__53 N__53 Vdd 0 
+simulator lang = spectre
+N18 (Vd Qb Vs sub!) nmos w=2u l=960n ng=2 rfmode=0 ad=0 as=0 pd=0 ps=0 m=1
+N19 (N__53 Qb_n Vs sub!) nmos w=2u l=960n ng=2 rfmode=0 ad=0 as=0 pd=0 ps=0 m=1
 X2 (sub! 0) ptap1 R=262.847 l=780n w=780n
 global 0 sub!
 include "C:/PDK_ADS/sg25h4_students/tech/spectre/mismatch.scs"
@@ -67,22 +78,11 @@ include "C:/PDK_ADS/sg25h4_students/tech/spectre/SG25_passives.lib"
 include "C:/PDK_ADS/sg25h4_students/tech/spectre/SG25_inductors.lib"
 include "C:/PDK_ADS/sg25h4_students/tech/spectre/SG25_diodes.lib"
 include "C:/PDK_ADS/sg25h4_students/tech/spectre/SG25_esd.lib"
+P15 (N__53 Qa N__74 sub_n) pmos w=4u l=480n ng=4 rfmode=0 ad=0 as=0 pd=0 ps=0 m=1
+P17 (Vd Qa_n N__74 sub_n) pmos w=4u l=480n ng=4 rfmode=0 ad=0 as=0 pd=0 ps=0 m=1
 simulator lang = ads
-OpAmp:X16  Vd N__44 N__44 Vdd 0 
-simulator lang = spectre
-N15 (N__51 N__74 0 sub!) nmos w=2u l=480n ng=2 rfmode=0 ad=0 as=0 pd=0 ps=0 m=1
-N16 (N__27 N__74 0 sub!) nmos w=20u l=480n ng=20 rfmode=0 ad=0 as=0 pd=0 ps=0 m=1
-N17 (N__74 N__74 0 sub!) nmos w=2u l=480n ng=2 rfmode=0 ad=0 as=0 pd=0 ps=0 m=1
-N18 (Vd Qb N__27 sub!) nmos w=20u l=480n ng=20 rfmode=0 ad=0 as=0 pd=0 ps=0 m=1
-N19 (N__53 Qb_n N__27 sub!) nmos w=20u l=480n ng=20 rfmode=0 ad=0 as=0 pd=0 ps=0 m=1
-P13 (N__51 N__51 Vdd sub_n) pmos w=1u l=480n ng=1 rfmode=0 ad=0 as=0 pd=0 ps=0 m=1
-P15 (N__44 Qa N__48 sub_n) pmos w=10u l=480n ng=10 rfmode=0 ad=0 as=0 pd=0 ps=0 m=1
-P17 (Vd Qa_n N__48 sub_n) pmos w=10u l=480n ng=10 rfmode=0 ad=0 as=0 pd=0 ps=0 m=1
-P14 (N__48 N__51 Vdd sub_n) pmos w=10u l=480n ng=10 rfmode=0 ad=0 as=0 pd=0 ps=0 m=1
-X18 (Vdd sub_n) ntap1 R=262.847 l=780n w=780n
-simulator lang = ads
-V_Probe:V_Probe1  N__27 
-Short:I_Probe1  N__53 N__44 Mode=0 SaveCurrent=yes 
+I_Source:SRC1  Vdd N__74 Type="I_DC" Idc=40 uA 
+I_Source:SRC2  Vs 0 Type="I_DC" Idc=40 uA 
 end charge_pump
 
 ; Library Name: spacefiber_pll_lib
@@ -100,42 +100,51 @@ C2=1 pF
 Short:PinShort__Vout  Vout__Vout Vout Mode=0 SaveCurrent=no
 end loop_filter
 
-#uselib "ckt" , "Vf_Pulse"
-Vf_Pulse:SRC2  Qa 0 Vpeak=Vdd Vdc=0 Freq=fref Width=D/fref Rise=10 psec Fall=10 psec Delay=0 nsec Weight=0 Harmonics=16 SaveCurrent=1 
-NAND_P:NAND2_2  Qa Qa Qa_n Vih=2*Vdd/3 Voh=Vdd Vol=0 
-charge_pump:X5  Qa Qa_n Qb Qb_n Vdd N__84 
-Tran:Tran1 StartTime=0.0 nsec StopTime=1 usec MaxTimeStep=50 psec LimitStepForTL=yes TimeStepControl=2 TruncTol=7.0 ChargeTol=1.0e-14 IntegMethod=0 MaxGearOrder=2 \
-Mu=0.5 MaxOrder=4 Freq[1]=1.0 GHz Order[1]=3 HB_Window=no \
-HB_Sol=no ImpApprox=no ShortTL_Delay=1.0 psec ImpMode=1 UseInitCond=no \
-LoadGminDC=no CheckKCL=yes CheckOnlyDeltaV=yes OverloadAlert=no DeviceBypass=no \
-MaxIters=10 MaxItersDC=200 DevOpPtLevel=0 StatusLevel=2 OutputAllPoints=yes \
-NoiseScale=1 ImpEnforcePassivity=yes ImpSkipTotalEnergy=1000 ImpLFEOn=yes \
-OutputPlan="Tran1_Output" 
+#uselib "sml" , "VCO_DivideByN"
+VCO_DivideByN:VCO1  Vd 0 Vvco_div VCO_CL freq_vco_CL VCO_Freq=2 GHz * _v1 F0=5.95 GHz N=40 Rout=50 Ohm Power=dbmtow(0) Delay=0 
 
-OutputPlan:Tran1_Output \
-      Type="Output" \
-      UseNodeNestLevel=yes \
-      NodeNestLevel=2 \
-      UseEquationNestLevel=yes \
-      EquationNestLevel=2 \
-      UseSavedEquationNestLevel=yes \
-      SavedEquationNestLevel=2 \
-      UseDeviceCurrentNestLevel=no \
-      DeviceCurrentNestLevel=0 \
-      DeviceCurrentDeviceType="All" \
-      DeviceCurrentSymSyntax=yes \
-      UseCurrentNestLevel=yes \
-      CurrentNestLevel=999 \
-      UseDeviceVoltageNestLevel=no \
-      DeviceVoltageNestLevel=0 \
-      DeviceVoltageDeviceType="All"
+HB:Env1 Freq[1]=fvco \
+ Order[1]=1 \
+  MaxOrder=0 StatusLevel=1 FundOversample=2 UseGear=yes EnvIntegOrder=2 \
+ EnvBandwidth=1 EnvWarnPoorFit=yes EnvUsePoorFit=yes SweepVar="time" DevOpPtLevel=0 \
+ EnvFitDisableCache=no SweepPlan="Env1_stim" OutputPlan="Env1_Output"
 
-NAND_P:NAND2_1  Qb Qb Qb_n Vih=2*Vdd/3 Voh=Vdd Vol=0 
-V_Source:SRC4  Qb 0 Type="V_DC" Vdc=0 SaveCurrent=1 
-Short:I_Probe1  N__84 N__83 Mode=0 SaveCurrent=yes 
-V_Source:SRC1  Vdd 0 Type="V_DC" Vdc=Vdd SaveCurrent=1 
-loop_filter:X6  N__83 Vd 0 
+OutputPlan:Env1_Output \
+       Type="Output" \
+       UseNodeNestLevel=yes \
+       NodeNestLevel=2 \
+       UseEquationNestLevel=yes \
+       EquationNestLevel=2 \
+       UseSavedEquationNestLevel=yes \
+       SavedEquationNestLevel=2 \
+       UseDeviceCurrentNestLevel=no \
+       DeviceCurrentNestLevel=0 \
+       DeviceCurrentDeviceType="All" \
+       DeviceCurrentSymSyntax=yes \
+       UseCurrentNestLevel=yes \
+       CurrentNestLevel=999 \
+       UseDeviceVoltageNestLevel=no \
+       DeviceVoltageNestLevel=0 \
+       DeviceVoltageDeviceType="All" 
+
+SweepPlan:Env1_stim Stop=tstop Step=1 nsec
+
+Tran:Env1_tran HB_Sol=1 SteadyState=1 StatusLevel=3 \
+ Freq[1]=fvco \
+ Order[1]=1 \
+ OutputPlan="Env1_Output"
+
+Component:tahb_Env1 Module="ATAHB" Type="ModelExtractor" Tran_Analysis="Env1_tran" HB_Analysis="Env1"
+
+loop_filter:X5  N__18 Vd 0 
+#uselib "sml" , "PM_DemodTuned"
+PM_DemodTuned:DEMOD1  VCO_CL PN_CL Sensitivity=180/pi Fnom=fvco Rout=50 Ohm 
+V_Source:SRC1  Vref 0 Type="V_DC" Vdc=Vref SaveCurrent=1 
 
 fref=156.25 MHz
-Vdd=2.5 V
-D=0.15
+tstop=100 usec
+fvco=6.25 GHz
+Vref=phaserad(-exp(j*2*pi*fref*time))
+PhaseFreqDet2:PFD2  Vref Vvco_div N__15 N__0 N__12 N__4 Vhigh=2.5 V Vlow=0 V DeadTime=0 psec Jitter=0 psec 
+V_Source:SRC2  Vdd 0 Type="V_DC" Vdc=2.5 V SaveCurrent=1 
+charge_pump:X6  N__15 N__12 N__4 N__0 Vdd N__18 

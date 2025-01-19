@@ -1,4 +1,4 @@
-<ADSWorkspace Revision="11" Version="100">
+<ADSWorkspace Revision="12" Version="100">
     <Workspace Name="">
         <LibraryDefs Name="lib.defs" />
         <ConfigFile Name="dds.cfg" />
@@ -75,6 +75,13 @@
         <Library Name="TL_SG25" />
         <LibDM Name="SG25_dev:data.dm" />
         <LibDM Name="TL_SG25:data.dm" />
+        <LibDM Name="SG25_dev:data.dm" />
+        <LibDM Name="TL_SG25:data.dm" />
+        <Data_Display Name="charge_pump_test.dds" />
+        <Dataset Name="charge_pump_test.ds" />
+        <Data_Files Name="charge_pump_test.ds" />
+        <Data_Files Name="charge_pump_test_data\logFile.txt" />
+        <Cell Name="spacefiber_pll_lib:OpAmp" />
         <Cell Name="spacefiber_pll_lib:charge_pump" />
         <Cell Name="spacefiber_pll_lib:charge_pump_test" />
         <Cell Name="spacefiber_pll_lib:loop_filter" />
@@ -84,6 +91,8 @@
         <Substrate Name="SG25_dev:SG25H_ViaMerge.subst" />
         <LibDM Name="SG25_dev:data.dm" />
         <LibDM Name="TL_SG25:data.dm" />
-        <Cell Name="spacefiber_pll_lib:OpAmp" />
+        <Data_Files Name="dc_annotation\spacefiber_pll_lib_charge_pump_test_schematic\annotation_1.xml" />
+        <Data_Files Name="dc_annotation\spacefiber_pll_lib_charge_pump_test_schematic\annotation_map.xml" />
+        <Cell Name="spacefiber_pll_lib:charge_pump_v1" />
     </Workspace>
 </ADSWorkspace>

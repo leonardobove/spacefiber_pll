@@ -58,15 +58,20 @@ define charge_pump ( Qa  Qa_n  Qb  Qb_n  Vdd  Vd )
 ;parameters 
 simulator lang = spectre
 X18 (Vdd sub_n) ntap1 R=262.847 l=780n w=780n
+N21 (Vd Vdd N__51 sub!) nmos w=10u l=240n ng=10 rfmode=0 ad=0 as=0 pd=0 ps=0 m=1
+P19 (Vd 0 N__71 sub_n) pmos w=20u l=240n ng=20 rfmode=0 ad=0 as=0 pd=0 ps=0 m=1
 simulator lang = ads
-OpAmp:X16  Vd N__51 N__51 Vdd 0 
+OpAmp:X16  Vd N__70 N__70 Vdd 0 
 simulator lang = spectre
-N18 (N__70 Qb Vs sub!) nmos w=4u l=240n ng=4 rfmode=0 ad=0 as=0 pd=0 ps=0 m=1
-N19 (N__75 Qb_n Vs sub!) nmos w=4u l=240n ng=4 rfmode=0 ad=0 as=0 pd=0 ps=0 m=1
-simulator lang = ads
-I_Source:SRC1  Vdd N__74 Type="I_DC" Idc=400 uA 
-simulator lang = spectre
+N18 (N__51 Qb Vs sub!) nmos w=10u l=240n ng=10 rfmode=0 ad=0 as=0 pd=0 ps=0 m=1
+P18 (N__70 0 N__73 sub_n) pmos w=20u l=240n ng=20 rfmode=0 ad=0 as=0 pd=0 ps=0 m=1
+N19 (N__75 Qb_n Vs sub!) nmos w=10u l=240n ng=10 rfmode=0 ad=0 as=0 pd=0 ps=0 m=1
+N23 (Vs N__76 0 sub!) nmos w=20u l=1u ng=20 rfmode=0 ad=0 as=0 pd=0 ps=0 m=1
 X2 (sub! 0) ptap1 R=262.847 l=780n w=780n
+simulator lang = ads
+R:R1  Vdd N__76 R=35000 Ohm Noise=yes 
+simulator lang = spectre
+P21 (N__57 N__60 Vdd sub_n) pmos w=40u l=1u ng=40 rfmode=0 ad=0 as=0 pd=0 ps=0 m=1
 global 0 sub!
 include "C:/PDK_ADS/sg25h4_students/tech/spectre/mismatch.scs"
 include "C:/PDK_ADS/sg25h4_students/tech/spectre/cornerDIO.scs" section=11
@@ -81,15 +86,12 @@ include "C:/PDK_ADS/sg25h4_students/tech/spectre/SG25_passives.lib"
 include "C:/PDK_ADS/sg25h4_students/tech/spectre/SG25_inductors.lib"
 include "C:/PDK_ADS/sg25h4_students/tech/spectre/SG25_diodes.lib"
 include "C:/PDK_ADS/sg25h4_students/tech/spectre/SG25_esd.lib"
-simulator lang = ads
-I_Source:SRC2  Vs 0 Type="I_DC" Idc=400 uA 
-simulator lang = spectre
-P15 (N__73 Qa N__74 sub_n) pmos w=8u l=240n ng=8 rfmode=0 ad=0 as=0 pd=0 ps=0 m=1
-P17 (N__71 Qa_n N__74 sub_n) pmos w=8u l=240n ng=8 rfmode=0 ad=0 as=0 pd=0 ps=0 m=1
-N20 (N__51 Vdd N__75 sub!) nmos w=4u l=240n ng=4 rfmode=0 ad=0 as=0 pd=0 ps=0 m=1
-P18 (N__51 0 N__73 sub_n) pmos w=4u l=240n ng=4 rfmode=0 ad=0 as=0 pd=0 ps=0 m=1
-P19 (Vd 0 N__71 sub_n) pmos w=8u l=240n ng=8 rfmode=0 ad=0 as=0 pd=0 ps=0 m=1
-N21 (Vd Vdd N__70 sub!) nmos w=4u l=240n ng=4 rfmode=0 ad=0 as=0 pd=0 ps=0 m=1
+P20 (N__60 N__60 Vdd sub_n) pmos w=40u l=1u ng=40 rfmode=0 ad=0 as=0 pd=0 ps=0 m=1
+N20 (N__70 Vdd N__75 sub!) nmos w=10u l=240n ng=10 rfmode=0 ad=0 as=0 pd=0 ps=0 m=1
+N22 (N__76 N__76 0 sub!) nmos w=2u l=1u ng=2 rfmode=0 ad=0 as=0 pd=0 ps=0 m=1
+P15 (N__73 Qa N__57 sub_n) pmos w=20u l=240n ng=20 rfmode=0 ad=0 as=0 pd=0 ps=0 m=1
+N24 (N__60 N__76 0 sub!) nmos w=21u l=1u ng=21 rfmode=0 ad=0 as=0 pd=0 ps=0 m=1
+P17 (N__71 Qa_n N__57 sub_n) pmos w=20u l=240n ng=20 rfmode=0 ad=0 as=0 pd=0 ps=0 m=1
 simulator lang = ads
 end charge_pump
 
@@ -99,65 +101,57 @@ end charge_pump
 define loop_filter ( Vin  Vin__Vout  gnd ) 
 ;parameters 
 R:R1  Vin N__2 R=R Noise=yes 
-C:C2  N__3 gnd C=C2 
+C:C2  Vin gnd C=C2 
 C:C1  N__2 gnd C=C1 
 
-R=12KOhm
-C1=8 pF
-C2=1 pF
-Short:I_Probe1  Vin N__3 Mode=0 SaveCurrent=yes 
+R=1KOhm
+C1=80 pF
+C2=5 pF
 Short:PinShort__Vout  Vin__Vout Vin Mode=0 SaveCurrent=no
 end loop_filter
 
 charge_pump:X6  Qa Qa_n Qb Qb_n Vdd N__1 
 #uselib "sml" , "VCO_DivideByN"
 VCO_DivideByN:VCO1  Vd 0 Vvco_div VCO_CL freq_vco_CL VCO_Freq=2 GHz * _v1 F0=5.95 GHz N=40 Rout=50 Ohm Power=dbmtow(0) Delay=0 
-
-HB:Env1 Freq[1]=fvco \
- Order[1]=1 \
-  MaxOrder=0 StatusLevel=1 FundOversample=2 UseGear=yes EnvIntegOrder=2 \
- EnvBandwidth=1 EnvWarnPoorFit=yes EnvUsePoorFit=yes SweepVar="time" DevOpPtLevel=0 \
- EnvFitDisableCache=no SweepPlan="Env1_stim" OutputPlan="Env1_Output"
-
-OutputPlan:Env1_Output \
-       Type="Output" \
-       UseNodeNestLevel=yes \
-       NodeNestLevel=2 \
-       UseEquationNestLevel=yes \
-       EquationNestLevel=2 \
-       UseSavedEquationNestLevel=yes \
-       SavedEquationNestLevel=2 \
-       UseDeviceCurrentNestLevel=no \
-       DeviceCurrentNestLevel=0 \
-       DeviceCurrentDeviceType="All" \
-       DeviceCurrentSymSyntax=yes \
-       UseCurrentNestLevel=yes \
-       CurrentNestLevel=999 \
-       UseDeviceVoltageNestLevel=no \
-       DeviceVoltageNestLevel=0 \
-       DeviceVoltageDeviceType="All" 
-
-SweepPlan:Env1_stim Stop=tstop Step=1 nsec
-
-Tran:Env1_tran HB_Sol=1 SteadyState=1 StatusLevel=3 \
- Freq[1]=fvco \
- Order[1]=1 \
- OutputPlan="Env1_Output"
-
-Component:tahb_Env1 Module="ATAHB" Type="ModelExtractor" Tran_Analysis="Env1_tran" HB_Analysis="Env1"
-
+#uselib "ckt" , "Vf_Pulse"
+Vf_Pulse:SRC3  Vref 0 Vpeak=Vdd Vdc=0 Freq=fref Width=D/fref Rise=10 psec Fall=10 psec Delay=0 nsec Weight=0 Harmonics=16 SaveCurrent=1 
 loop_filter:X5  N__18 Vd 0 
+Short:I_Probe1  N__1 N__18 Mode=0 SaveCurrent=yes 
 #uselib "sml" , "PM_DemodTuned"
 PM_DemodTuned:DEMOD1  VCO_CL PN_CL Sensitivity=180/pi Fnom=fvco Rout=50 Ohm 
-V_Source:SRC1  Vref 0 Type="V_DC" Vdc=Vref SaveCurrent=1 
 
 fref=156.25 MHz
 Vdd=2.5V
 tstop=3 usec
 fvco=6.25 GHz
 Vref=phaserad(-exp(j*2*pi*fref*time))
-PhaseFreqDet2:PFD2  Vref Vvco_div Qa Qb_n Qa_n Qb Vhigh=2.5 V Vlow=0 V DeadTime=0 psec Jitter=0 psec 
+PhaseFreqDet2:PFD2  Vref Vvco_div Qa Qb_n Qa_n Qb Vhigh=Vdd Vlow=0 V DeadTime=0 psec Jitter=0 psec 
 V_Source:SRC2  Vdd 0 Type="V_DC" Vdc=2.5 V SaveCurrent=1 
-Short:I_Probe1  N__1 N__18 Mode=0 SaveCurrent=yes 
+Tran:Tran1 StartTime=0.0 nsec StopTime=3 usec MaxTimeStep=500 psec LimitStepForTL=yes TimeStepControl=2 TruncTol=7.0 ChargeTol=1.0e-14 IntegMethod=0 MaxGearOrder=2 \
+Mu=0.5 MaxOrder=4 Freq[1]=1.0 GHz Order[1]=3 HB_Window=no \
+HB_Sol=no ImpApprox=no ShortTL_Delay=1.0 psec ImpMode=1 UseInitCond=no \
+LoadGminDC=no CheckKCL=yes CheckOnlyDeltaV=yes OverloadAlert=no DeviceBypass=no \
+MaxIters=10 MaxItersDC=200 DevOpPtLevel=0 StatusLevel=2 OutputAllPoints=yes \
+NoiseScale=1 ImpEnforcePassivity=yes ImpSkipTotalEnergy=1000 ImpLFEOn=yes \
+OutputPlan="Tran1_Output" 
+
+OutputPlan:Tran1_Output \
+      Type="Output" \
+      UseNodeNestLevel=yes \
+      NodeNestLevel=2 \
+      UseEquationNestLevel=yes \
+      EquationNestLevel=2 \
+      UseSavedEquationNestLevel=yes \
+      SavedEquationNestLevel=2 \
+      UseDeviceCurrentNestLevel=no \
+      DeviceCurrentNestLevel=0 \
+      DeviceCurrentDeviceType="All" \
+      DeviceCurrentSymSyntax=yes \
+      UseCurrentNestLevel=yes \
+      CurrentNestLevel=999 \
+      UseDeviceVoltageNestLevel=no \
+      DeviceVoltageNestLevel=0 \
+      DeviceVoltageDeviceType="All"
+
 
 D=0.5

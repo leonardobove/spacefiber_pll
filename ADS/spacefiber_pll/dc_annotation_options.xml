@@ -1,6 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <dc_annotation_options>
- <options ToggleVoltage="true" library="spacefiber_pll_lib" ToggleCurrent="false" view="schematic" cell="charge_pump_test"/>
- <options ToggleVoltage="true" library="spacefiber_pll_lib" ToggleCurrent="false" view="schematic" cell="pll_cp_real"/>
- <options ToggleVoltage="true" library="spacefiber_pll_lib" view="schematic" cell="pll_ideal"/>
+ <options ToggleCurrent="false" library="spacefiber_pll_lib" view="schematic" ToggleVoltage="true" cell="charge_pump_test"/>
+ <options library="spacefiber_pll_lib" ToggleCurrent="false" view="schematic" ToggleVoltage="false" cell="pll_cp_real"/>
+ <options library="spacefiber_pll_lib" view="schematic" ToggleVoltage="true" cell="pll_ideal"/>
+ <options library="spacefiber_pll_lib" view="schematic" ToggleVoltage="false" cell="pll_cp_pfd_real"/>
 </dc_annotation_options>

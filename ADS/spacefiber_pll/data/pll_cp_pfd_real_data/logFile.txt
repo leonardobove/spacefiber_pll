@@ -1,0 +1,86 @@
+
+hpeesofsim (*) 595.shp Oct 31 2023, MINT version 5
+    (64-bit windows built: Tue Oct 31, 2023 22:23:19 +0000)
+
+
+***** Simulation started at Mon Jan 20 16:34:09 2025
+      Running on host: "LAPTOP-9FLTR55I"
+      In Directory: "C:\Project_CIW\spacefiber_pll\ADS\spacefiber_pll\data"
+      Process ID: 20872
+
+Warning detected by hpeesofsim during netlist parsing.
+    In file `C:/PDK_ADS/sg25h4_students/tech/spectre/SG25_passives.lib' at, or just before, line 439.
+    Parameter name 'm' is reserved for the subcircuit multiplicity factor. So a formal parameter of that name is ignored.
+
+Warning detected by hpeesofsim during netlist parsing.
+    Diode model `DMAINMOD' level=dmain_level - expression not allowed here.
+
+Warning detected by hpeesofsim during netlist parsing.
+    Diode model `DREVMOD' level=drev_level - expression not allowed here.
+
+Warning detected by hpeesofsim during netlist parsing.
+    Diode model `DSUBMOD' level=dsub_level - expression not allowed here.
+
+Warning detected by hpeesofsim during netlist parsing.
+    Skipping instance `OpAmp.svaricap.LowL' of type `paramtest', 
+    In file `C:/PDK_ADS/sg25h4_students/tech/SG25_MOS/library/spectre/sg25_svaricap_mod.scs' at, or just before, line 86.
+
+Warning detected by hpeesofsim during netlist parsing.
+    Skipping instance `OpAmp.svaricap.HiL' of type `paramtest', 
+    In file `C:/PDK_ADS/sg25h4_students/tech/SG25_MOS/library/spectre/sg25_svaricap_mod.scs' at, or just before, line 87.
+
+Warning detected by hpeesofsim during netlist parsing.
+    Skipping instance `OpAmp.svaricap.LowW' of type `paramtest', 
+    In file `C:/PDK_ADS/sg25h4_students/tech/SG25_MOS/library/spectre/sg25_svaricap_mod.scs' at, or just before, line 88.
+
+Warning detected by hpeesofsim during netlist parsing.
+    Skipping instance `OpAmp.svaricap.HiW' of type `paramtest', 
+    In file `C:/PDK_ADS/sg25h4_students/tech/SG25_MOS/library/spectre/sg25_svaricap_mod.scs' at, or just before, line 89.
+
+Warning detected by hpeesofsim during netlist parsing.
+    Skipping instance `OpAmp.svaricap.LowNX' of type `paramtest', 
+    In file `C:/PDK_ADS/sg25h4_students/tech/SG25_MOS/library/spectre/sg25_svaricap_mod.scs' at, or just before, line 90.
+
+Warning detected by hpeesofsim during netlist parsing.
+    Skipping instance `OpAmp.svaricap.HiNX' of type `paramtest', 
+    In file `C:/PDK_ADS/sg25h4_students/tech/SG25_MOS/library/spectre/sg25_svaricap_mod.scs' at, or just before, line 91.
+
+
+NXP SiMKit (loader release 5.7, device release 5.7)
+
+
+Model psp1020, SiMKit release 5.7, Copyright NXP Semiconductors 2015.
+Warning detected by hpeesofsim in topology check during circuit set up.
+    Number of nodes with only one device attached (topology corrected): 2
+
+
+HB Env1[1] <spacefiber_pll_lib:pll_cp_pfd_real:schematic>   time=(0 s->1 us)
+Warning detected by hpeesofsim in Verilog-A Device during HB analysis `Env1'.
+    'X8.DFFPC_2' is an instance of a Verilog-A module 'DFlipFlopPC_P'.
+    Event operators (cross, timer, or last_crossing) are present
+    in the module hierarchy. These events are only supported for
+    transient analysis. They will never be triggered during Spectral
+    analysis.
+
+Warning detected by hpeesofsim in Verilog-A Device during HB analysis `Env1'.
+    'X8.DFFPC_1' is an instance of a Verilog-A module 'DFlipFlopPC_P'.
+    Event operators (cross, timer, or last_crossing) are present
+    in the module hierarchy. These events are only supported for
+    transient analysis. They will never be triggered during Spectral
+    analysis.
+
+Warning detected by hpeesofsim in Verilog-A Device during HB analysis `Env1'.
+    'X8.AND2_1.AND' is an instance of a Verilog-A module 'LOGIC_GATE_P'.
+    Event operators (cross, timer, or last_crossing) are present
+    in the module hierarchy. These events are only supported for
+    transient analysis. They will never be triggered during Spectral
+    analysis.
+
+.........................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................Warning detected by hpeesofsim in Verilog-A device during HB analysis `Env1'.
+    'abstime()' is not supported in Harmonic Balance, returning 0.0.
+
+
+
+Resource usage:
+  Total stopwatch time     =     5.32 seconds.
+

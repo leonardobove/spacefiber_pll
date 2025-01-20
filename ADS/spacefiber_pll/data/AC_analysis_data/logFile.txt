@@ -1,0 +1,17 @@
+
+hpeesofsim (*) 595.shp Oct 31 2023, MINT version 5
+    (64-bit windows built: Tue Oct 31, 2023 22:23:19 +0000)
+
+
+***** Simulation started at Mon Jan 20 12:17:24 2025
+      Running on host: "LAPTOP-9FLTR55I"
+      In Directory: "C:\Project_CIW\spacefiber_pll\ADS\spacefiber_pll\data"
+      Process ID: 18892
+
+
+AC AC1[1] <spacefiber_pll_lib:AC_analysis:schematic>   freq=(1 Hz->1 GHz)
+
+
+Resource usage:
+  Total stopwatch time     =     0.77 seconds.
+

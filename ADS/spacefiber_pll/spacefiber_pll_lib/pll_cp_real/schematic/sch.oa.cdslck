@@ -1,0 +1,16 @@
+#
+# Edit Lock-Stake file. CAUTION: Please do not change.
+#
+# Information about current Edit Lock Owner.
+#
+LockStakeVersion               1.1
+LoginName                      alexp
+HostName                       LAPTOP-9FLTR55I
+ProcessIdentifier              19208
+ProcessCreationTime_UTC        1737380653
+ProcessCreationTime_Readable   Mon Jan 20 14:44:13 2025 ora solare Europa occidentale
+AppIdentifier                  OA File System Design Manager
+OSType                         win32
+ReasonForPlacingEditLock       OpenAccess edit lock
+FilePathUsedToEditLock         C:\Project_CIW\spacefiber_pll\ADS\spacefiber_pll\spacefiber_pll_lib\pll_cp_real\schematic\sch.oa.cdslck
+TimeEditLocked                 Mon Jan 20 15:02:28 2025 ora solare Europa occidentale

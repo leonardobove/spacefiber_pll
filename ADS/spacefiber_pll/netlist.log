@@ -111,49 +111,55 @@ Short:PinShort__Vout  Vin__Vout Vin Mode=0 SaveCurrent=no
 end loop_filter
 
 charge_pump:X6  Qa Qa_n Qb Qb_n Vdd N__1 
-#uselib "ckt" , "Vf_Pulse"
-Vf_Pulse:SRC3  V_ref 0 Vpeak=Vdd Vdc=0 Freq=fref Width=D/fref Rise=10 psec Fall=10 psec Delay=0 nsec Weight=0 Harmonics=16 SaveCurrent=1 
+
+HB:Env1 Freq[1]=fvco \
+ Order[1]=1 \
+  MaxOrder=0 StatusLevel=1 FundOversample=2 UseGear=yes EnvIntegOrder=2 \
+ EnvBandwidth=1 EnvWarnPoorFit=yes EnvUsePoorFit=yes SweepVar="time" DevOpPtLevel=0 \
+ EnvFitDisableCache=no EnvCheckLTE=1 SweepPlan="Env1_stim" OutputPlan="Env1_Output"
+
+OutputPlan:Env1_Output \
+       Type="Output" \
+       UseNodeNestLevel=yes \
+       NodeNestLevel=2 \
+       UseEquationNestLevel=yes \
+       EquationNestLevel=2 \
+       UseSavedEquationNestLevel=yes \
+       SavedEquationNestLevel=2 \
+       UseDeviceCurrentNestLevel=no \
+       DeviceCurrentNestLevel=0 \
+       DeviceCurrentDeviceType="All" \
+       DeviceCurrentSymSyntax=yes \
+       UseCurrentNestLevel=yes \
+       CurrentNestLevel=999 \
+       UseDeviceVoltageNestLevel=no \
+       DeviceVoltageNestLevel=0 \
+       DeviceVoltageDeviceType="All" 
+
+SweepPlan:Env1_stim Stop=tstop Step=100000000 nsec
+
+Tran:Env1_tran HB_Sol=1 SteadyState=1 StatusLevel=3 \
+ Freq[1]=fvco \
+ Order[1]=1 \
+ OutputPlan="Env1_Output"
+
+Component:tahb_Env1 Module="ATAHB" Type="ModelExtractor" Tran_Analysis="Env1_tran" HB_Analysis="Env1"
+
 loop_filter:X5  N__18 Vd 0 
 Short:I_Probe1  N__1 N__18 Mode=0 SaveCurrent=yes 
 #uselib "sml" , "DivideByN"
 DivideByN:DIV2  Vvco Vvco_div FnomIn=6.25 GHz N=40 
 #uselib "sml" , "VCO"
-VCO:VCO3  Vd Vvco Kv=2 GHz Freq=5.95 GHz P=-j*dbmtow(0) Rout=50 Ohm Delay=0 Harmonics=list(0.2*j, -0.2*j) 
+VCO:VCO3  Vd Vvco Kv=2 GHz Freq=5.95 GHz P=-j*dbmtow(0) Rout=50 Ohm Delay=0 Harmonics=list(0, 0) 
+V_Source:SRC1  V_ref 0 Type="V_DC" Vdc=Vref SaveCurrent=1 
 
 fref=156.25 MHz
 Vdd=2.5V
 tstop=10 usec
 fvco=6.25 GHz
 Vref=phaserad(-exp(j*2*pi*fref*time))
-PFD:X8  reset V_ref Vvco_div_detuned Vdd reset Qa Qb Qa_n Qb_n 
+PFD:X8  reset V_ref div Vdd reset Qa Qb Qa_n Qb_n 
 V_Source:SRC2  Vdd 0 Type="V_DC" Vdc=2.5 V SaveCurrent=1 
-Tran:Tran1 StartTime=0.0 nsec StopTime=3 usec MaxTimeStep=15 psec LimitStepForTL=yes TimeStepControl=2 TruncTol=7.0 ChargeTol=1.0e-14 IntegMethod=0 MaxGearOrder=2 \
-Mu=0.5 MaxOrder=4 Freq[1]=1.0 GHz Order[1]=3 HB_Window=no \
-HB_Sol=no ImpApprox=no ShortTL_Delay=1.0 psec ImpMode=1 UseInitCond=no \
-LoadGminDC=no CheckKCL=yes CheckOnlyDeltaV=yes OverloadAlert=no DeviceBypass=no \
-MaxIters=10 MaxItersDC=200 DevOpPtLevel=0 StatusLevel=2 OutputAllPoints=yes \
-NoiseScale=1 ImpEnforcePassivity=yes ImpSkipTotalEnergy=1000 ImpLFEOn=yes \
-OutputPlan="Tran1_Output" 
-
-OutputPlan:Tran1_Output \
-      Type="Output" \
-      UseNodeNestLevel=yes \
-      NodeNestLevel=2 \
-      UseEquationNestLevel=yes \
-      EquationNestLevel=2 \
-      UseSavedEquationNestLevel=yes \
-      SavedEquationNestLevel=2 \
-      UseDeviceCurrentNestLevel=no \
-      DeviceCurrentNestLevel=0 \
-      DeviceCurrentDeviceType="All" \
-      DeviceCurrentSymSyntax=yes \
-      UseCurrentNestLevel=yes \
-      CurrentNestLevel=999 \
-      UseDeviceVoltageNestLevel=no \
-      DeviceVoltageNestLevel=0 \
-      DeviceVoltageDeviceType="All"
-
 
 D=0.5
-#uselib "sml" , "FM_DemodTuned"
-FM_DemodTuned:DEMOD2  Vvco_div Vvco_div_detuned Sensitivity=0.01e12 Fnom=156.25 MHz Rout=50 Ohm 
+Short:CMP1  Vvco_div div Mode=0 SaveCurrent=no

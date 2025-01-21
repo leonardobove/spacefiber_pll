@@ -1,8 +1,15 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<annotation_files Time="lun gen 20 17:18:35 2025" Simulator="hpeesofsim" Version="1.0">
+<?xml version='1.0' encoding='UTF-8'?>
+<annotation_files Time="lun gen 20 17:50:35 2025" Simulator="hpeesofsim" Version="1.0">
  <File name="annotation_1.xml">
-  <Controller name="Tran1">
+  <Controller name="Env1_(DC)">
    <P>time: 0.0000000000000000e+00</P>
+   <P>freq: 0.0000000000000000e+00</P>
+  </Controller>
+ </File>
+ <File name="annotation_2.xml">
+  <Controller name="Env1_(HB)">
+   <P>time: 0.0000000000000000e+00</P>
+   <P>freq: 0.0000000000000000e+00</P>
   </Controller>
  </File>
 </annotation_files>

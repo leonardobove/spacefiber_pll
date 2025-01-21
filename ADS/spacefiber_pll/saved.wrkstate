@@ -1,7 +1,8 @@
 <!DOCTYPE SaveWorkspaceState>
 <SaveWorkspaceState>
     <Windows>
-        <DDS name="pll_cp_real.dds"/>
+        <Schematic y1="-9" view="schematic" x1="-1" width="1920" geom="1,0,2,616,246,1351,662,1920,1080" cell="pll_cp_real_trans" height="991" lib="spacefiber_pll_lib"/>
+        <DDS name="pll_cp_real_trans.dds"/>
     </Windows>
     <MainWindowTab tab="1"/>
 </SaveWorkspaceState>

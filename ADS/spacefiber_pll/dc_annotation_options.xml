@@ -4,4 +4,5 @@
  <options library="spacefiber_pll_lib" ToggleCurrent="false" view="schematic" ToggleVoltage="false" cell="pll_cp_real"/>
  <options library="spacefiber_pll_lib" view="schematic" ToggleVoltage="true" cell="pll_ideal"/>
  <options library="spacefiber_pll_lib" view="schematic" ToggleVoltage="false" cell="pll_cp_pfd_real"/>
+ <options library="spacefiber_pll_lib" view="schematic" ToggleVoltage="false" cell="pll_cp_real_trans"/>
 </dc_annotation_options>

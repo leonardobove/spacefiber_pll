@@ -1,7 +1,7 @@
-; Top Design: "spacefiber_pll_lib:pll_real:schematic"
+; Top Design: "spacefiber_pll_lib:pll_phase_noise:schematic"
 ; Netlisted using Hierarchy Policy: "Standard_ic"
 
-Options ResourceUsage=yes UseNutmegFormat=no EnableOptim=no TopDesignName="spacefiber_pll_lib:pll_real:schematic" DcopOutputNodeVoltages=yes DcopOutputPinCurrents=yes DcopOutputAllSweepPoints=no DcopOutputDcopType=0
+Options ResourceUsage=yes UseNutmegFormat=no EnableOptim=no TopDesignName="spacefiber_pll_lib:pll_phase_noise:schematic" DcopOutputNodeVoltages=yes DcopOutputPinCurrents=yes DcopOutputAllSweepPoints=no DcopOutputDcopType=0
 simulator lang = spectre
 global 0 sub!
 simulator lang = ads
@@ -99,22 +99,17 @@ end charge_pump
 ; Cell Name: loop_filter
 ; View Name: schematic
 define loop_filter ( Vin  Vin__Vout  gnd ) 
-;parameters 
+parameters  R=1k  C1=1000p  C2=100p 
 R:R1  Vin N__2 R=R Noise=yes 
 C:C2  Vin gnd C=C2 
 C:C1  N__2 gnd C=C1 
-
-R=1KOhm
-C1=80 pF
-C2=5 pF
 Short:PinShort__Vout  Vin__Vout Vin Mode=0 SaveCurrent=no
 end loop_filter
 
-charge_pump:X6  Qa Qa_n Qb Qb_n Vdd N__1 
-loop_filter:X5  N__18 Vd 0 
-Short:I_Probe1  N__1 N__18 Mode=0 SaveCurrent=yes 
+charge_pump:CP_real  Qa Qa_n Qb Qb_n Vdd N__9 
+Short:I_CP  N__9 N__3 Mode=0 SaveCurrent=yes 
 #uselib "sml" , "ResetSwitch"
-ResetSwitch:SWITCH1  0 Vd 
+ResetSwitch:SWITCH1  0 N__26 
 V_Source:SRC1  V_ref 0 Type="V_DC" Vdc=Vref SaveCurrent=1 
 
 fref=156.25 MHz
@@ -126,7 +121,7 @@ Vref=phaserad(-exp(j*2*pi*fref*time))
 Kv=2 GHz
 TimeStep=0.1/fvco
 N=40
-PFD:X8  reset V_ref Vvco_div Vdd reset Qa Qb Qa_n Qb_n 
+PFD:PFD_real  reset V_ref VCO_div Vdd reset Qa Qb Qa_n Qb_n 
 V_Source:SRC2  Vdd 0 Type="V_DC" Vdc=Vdd SaveCurrent=1 
 Tran:Tran1 StartTime=0.0 nsec StopTime=StopTime MaxTimeStep=TimeStep LimitStepForTL=yes TimeStepControl=2 TruncTol=7.0 ChargeTol=1.0e-14 IntegMethod=0 MaxGearOrder=2 \
 Mu=0.5 MaxOrder=4 Freq[1]=1.0 GHz Order[1]=3 HB_Window=no \
@@ -155,4 +150,23 @@ OutputPlan:Tran1_Output \
       DeviceVoltageDeviceType="All"
 
 #uselib "sml" , "VCO_DivideByN"
-VCO_DivideByN:VCO4  Vd 0 Vvco_div Vvco freq_Vvco VCO_Freq=Kv * _v1 F0=f0 N=N Rout=50 Ohm Power=dbmtow(0) Delay=50 nsec 
+VCO_DivideByN:VCO1  Vd 0 VCO_div VCO_CL freq_VCO VCO_Freq=Kv * _v1 F0=f0 N=N Rout=50 Ohm Power=dbmtow(0) Delay=50 nsec 
+#uselib "sml" , "VCO"
+VCO:VCO2  0 N__8 Kv=Kv Freq=fvco P=-j*dbmtow(0) Rout=50 Ohm Delay=timestep Harmonics=list(0) 
+V_Source:SRC3  N__17 0 Type="V_Noise" V_Noise=pn2 SaveCurrent=1 
+#uselib "sml" , "PM_ModTuned"
+PM_ModTuned:MOD1  N__8 VCO_OL N__17 Sensitivity=180/pi Fnom=fvco Rout=50 Ohm 
+#uselib "sml" , "PM_DemodTuned"
+PM_DemodTuned:DEMOD1  VCO_OL PN_OL Sensitivity=180/pi Fnom=fvco Rout=50 Ohm 
+#uselib "sml" , "FM_DemodTuned"
+FM_DemodTuned:DEMOD2  VCO_OL FM_Demod Sensitivity=Kv Fnom=fvco Rout=50 Ohm 
+#uselib "ckt" , "VCVS"
+VCVS:SRC4  FM_Demod 0 Vd N__26 G=1 T=0.0 nsec R1=1e100 Ohm R2=0 Ohm F=0.0 GHz 
+#uselib "ckt" , "DAC"
+DAC:DAC_PhNoise  File="REF_PhaseNoise.mdif" Type="gmdif" InterpMode="linear" InterpDom="ri" ExtrapMode="interpMode" iVar1="log_freq" iVal1=log(abs(freq) + 1e-6) 
+
+pn_db=file{DAC_PhNoise, "phnoise"}
+pn2=10^(pn_db/20)*sqrt(2)
+#uselib "sml" , "PM_DemodTuned"
+PM_DemodTuned:DEMOD3  VCO_CL PN_CL Sensitivity=180/pi Fnom=fvco Rout=50 Ohm 
+loop_filter:LP_real  N__3 N__26 0 R=1k C1=1000p C2=100p 

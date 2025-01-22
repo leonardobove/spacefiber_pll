@@ -1,0 +1,4 @@
+create_item("loop_filter","loop_filter","X",16,-1,NULL,"Component Parameters",NULL,"%43?global %;%d:%t %# %44?0%:%31?%C%:_net%c%;%;%e %b%r%8?%29?%:%30?%p %:%k%?[%1i]%;=%p %;%;%;%e%e","loop_filter","%t%b%r%38?%:\n%30?%s%:%k%?[%1i]%;=%s%;%;%e%e%;","",3,NULL,0,
+create_parm("R","R",68608,"StdFormSet",-1,prm("StdForm","1k")),
+create_parm("C1","C1",68608,"StdFormSet",-1,prm("StdForm","1000p")),
+create_parm("C2","C2",68608,"StdFormSet",-1,prm("StdForm","100p")));

@@ -1,0 +1,11 @@
+BEGIN DATA
+% log_freq (real) phnoise (real)
+    1   5
+    2   -18
+    3   -41
+    4   -64
+    5   -87
+    6   -110
+    7   -132
+    8   -152
+END DATA

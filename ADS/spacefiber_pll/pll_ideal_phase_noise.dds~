@@ -10,7 +10,7 @@ ddoId = get_new(ddsId, "Object");
 // DataDisplay Object:
 	set(ddoId, "Path", dds_get_exec_path(what_file(0)));
 	set(ddoId, "Name", dds_get_exec_file(what_file(0)));
-	set(ddoId, "FileModifiedDateAndTime", "2025-01-22T21:12:24Z");
+	set(ddoId, "FileModifiedDateAndTime", "2025-01-22T21:12:28Z");
 	set(ddoId, "FileCreatedDateAndTime", "2025-01-22T17:11:51Z");
 	dssId = get(ddoId, "DatasetServer");
 // Default Dataset
@@ -550,7 +550,7 @@ goId0 = get_new(pageId, "Equation");
 ddWinId = get_new(ddsId, "Window", 189, 104, 1536, 864);
 	set(ddWinId, "Object", ddoId);
 	set(ddWinId, "CurrentPage", 1219888484);
-	set(ddWinId, "PageViewRect_1219888484", list(-516, 3125, 12418, -3290));
+	set(ddWinId, "PageViewRect_1219888484", list(-33, 2986, 12924, -3440));
 	set(ddWinId, "Frame", list(189, 104, 1536, 864));
 	set(ddWinId, "Maximized", TRUE);
 	set(ddWinId, "ForegroundColor", 0);

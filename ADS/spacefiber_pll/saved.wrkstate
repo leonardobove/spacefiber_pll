@@ -1,7 +1,10 @@
 <!DOCTYPE SaveWorkspaceState>
 <SaveWorkspaceState>
     <Windows>
-        <Schematic lib="spacefiber_pll_lib" y1="-8" width="1366" view="schematic" x1="-1" cell="pll_real" height="705" geom="1,0,3,709,446,961,471,1366,768"/>
+        <Schematic height="991" geom="1,0,3,123,329,1351,662,1920,1080" lib="spacefiber_pll_lib" cell="charge_pump" x1="-1" width="1920" view="schematic" y1="-9"/>
+        <Schematic height="981" geom="1,0,0,1,38,958,981,1920,1080" lib="spacefiber_pll_lib" cell="OpAmp" x1="0" width="958" view="schematic" y1="0"/>
+        <DDS name="pll_real.dds"/>
+        <DDS name="opamp_test.dds"/>
     </Windows>
     <MainWindowTab tab="1"/>
 </SaveWorkspaceState>

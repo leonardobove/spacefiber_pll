@@ -1,63 +1,85 @@
-; Top Design: "spacefiber_pll_lib:pll_ideal:schematic"
+; Top Design: "spacefiber_pll_lib:opamp_test:schematic"
 ; Netlisted using Hierarchy Policy: "Standard_ic"
 
-Options ResourceUsage=yes UseNutmegFormat=no EnableOptim=no TopDesignName="spacefiber_pll_lib:pll_ideal:schematic" DcopOutputNodeVoltages=yes DcopOutputPinCurrents=yes DcopOutputAllSweepPoints=no DcopOutputDcopType=0
+Options ResourceUsage=yes UseNutmegFormat=no EnableOptim=no TopDesignName="spacefiber_pll_lib:opamp_test:schematic" DcopOutputNodeVoltages=yes DcopOutputPinCurrents=yes DcopOutputAllSweepPoints=no DcopOutputDcopType=0
+simulator lang = spectre
+global 0 sub!
+simulator lang = ads
 ; Library Name: spacefiber_pll_lib
-; Cell Name: loop_filter
+; Cell Name: OpAmp
 ; View Name: schematic
-define loop_filter ( Vin  Vin__Vout  gnd ) 
-parameters  R=1k  C1=1000p  C2=100p 
-R:R1  Vin N__2 R=R Noise=yes 
-C:C2  Vin gnd C=C2 
-C:C1  N__2 gnd C=C1 
-Short:PinShort__Vout  Vin__Vout Vin Mode=0 SaveCurrent=no
-end loop_filter
+define OpAmp ( Vpos  Vneg  Vout  Vdd  Vss ) 
+;parameters 
+simulator lang = spectre
+P6 (N__6 Vk2 Vdd sub_n) pmos w=22.9u l=1u ng=1 rfmode=0 ad=0 as=0 pd=0 ps=0 m=1
+P5 (Vk2 Vk2 Vdd sub_n) pmos w=22.9u l=1u ng=1 rfmode=0 ad=0 as=0 pd=0 ps=0 m=1
+N12 (N__6 Vpos N__16 sub!) nmos w=2.15u l=1u ng=1 rfmode=0 ad=0 as=0 pd=0 ps=0 m=1
+N11 (Vk2 Vneg N__16 sub!) nmos w=2.15u l=1u ng=1 rfmode=0 ad=0 as=0 pd=0 ps=0 m=1
+N10 (N__16 N__22 Vss sub!) nmos w=4.3u l=1u ng=1 rfmode=0 ad=0 as=0 pd=0 ps=0 m=1
+simulator lang = ads
+I_Source:SRC1  Vdd N__22 Type="I_DC" Idc=11 uA 
+simulator lang = spectre
+global 0 sub!
+include "C:/PDK_ADS/sg25h4_students/tech/spectre/mismatch.scs"
+include "C:/PDK_ADS/sg25h4_students/tech/spectre/cornerDIO.scs" section=11
+include "C:/PDK_ADS/sg25h4_students/tech/SG25_MOS/library/spectre/cornerMOS_psp.scs" section=tt
+include "C:/PDK_ADS/sg25h4_students/tech/SG25H4_HBT/spectre/cornerBIP.scs" section=typ
+include "C:/PDK_ADS/sg25h4_students/tech/spectre/cornerRES.scs" section=11
+include "C:/PDK_ADS/sg25h4_students/tech/spectre/cornerCAP.scs" section=11
+include "C:/PDK_ADS/sg25h4_students/tech/spectre/cornerRCX.scs" section=11
+include "C:/PDK_ADS/sg25h4_students/tech/spectre/statistics.scs"
+include "C:/PDK_ADS/sg25h4_students/tech/spectre/SG25H4_parameters.scs"
+include "C:/PDK_ADS/sg25h4_students/tech/spectre/SG25_passives.lib"
+include "C:/PDK_ADS/sg25h4_students/tech/spectre/SG25_inductors.lib"
+include "C:/PDK_ADS/sg25h4_students/tech/spectre/SG25_diodes.lib"
+include "C:/PDK_ADS/sg25h4_students/tech/spectre/SG25_esd.lib"
+N9 (N__22 N__22 Vss sub!) nmos w=2.15u l=1u ng=1 rfmode=0 ad=0 as=0 pd=0 ps=0 m=1
+X3 (sub! 0) ptap1 R=262.847 l=780n w=780n
+X5 (Vdd sub_n) ntap1 R=262.847 l=780n w=780n
+N13 (Vk2 N__22 Vss sub!) nmos w=6.45u l=1u ng=1 rfmode=0 ad=0 as=0 pd=0 ps=0 m=1
+N14 (Vk2 N__22 Vss sub!) nmos w=2.15u l=1u ng=1 rfmode=0 ad=0 as=0 pd=0 ps=0 m=1
+P7 (Vk2 Vk2 Vdd sub_n) pmos w=5.5u l=1u ng=1 rfmode=0 ad=0 as=0 pd=0 ps=0 m=1
+P8 (Vk2 Vk2 Vdd sub_n) pmos w=11.45u l=1u ng=1 rfmode=0 ad=0 as=0 pd=0 ps=0 m=1
+P9 (N__10 Vk2 N__6 sub_n) pmos w=11.45u l=1u ng=1 rfmode=0 ad=0 as=0 pd=0 ps=0 m=1
+P10 (Vout Vk2 Vk2 sub_n) pmos w=11.45u l=1u ng=1 rfmode=0 ad=0 as=0 pd=0 ps=0 m=1
+N15 (N__10 N__10 N__32 sub!) nmos w=2.15u l=1u ng=1 rfmode=0 ad=0 as=0 pd=0 ps=0 m=1
+N16 (Vout N__10 N__1 sub!) nmos w=2.15u l=1u ng=1 rfmode=0 ad=0 as=0 pd=0 ps=0 m=1
+N17 (N__32 N__32 Vss sub!) nmos w=2.15u l=1u ng=1 rfmode=0 ad=0 as=0 pd=0 ps=0 m=1
+N18 (N__1 N__32 Vss sub!) nmos w=2.15u l=1u ng=1 rfmode=0 ad=0 as=0 pd=0 ps=0 m=1
+simulator lang = ads
+end OpAmp
 
-#uselib "sml" , "PhaseFreqDetCP"
-PhaseFreqDetCP:PFD1  Vref VCO_div N__12 N__12 Ihigh=400 uA Ilow=400 uA DeadTime=0 psec Jitter=0 psec 
-#uselib "sml" , "VCO_DivideByN"
-VCO_DivideByN:VCO1  Vd 0 VCO_div VCO_CL freq_VCO_CL VCO_Freq=2 GHz * _v1 F0=5.95 GHz N=40 Rout=50 Ohm Power=dbmtow(0) Delay=0 
 
-HB:Env1 Freq[1]=fvco \
- Order[1]=1 \
-  MaxOrder=0 StatusLevel=1 FundOversample=2 UseGear=yes EnvIntegOrder=2 \
- EnvBandwidth=1 EnvWarnPoorFit=yes EnvUsePoorFit=yes SweepVar="time" DevOpPtLevel=0 \
- EnvFitDisableCache=no SweepPlan="Env1_stim" OutputPlan="Env1_Output"
-
-OutputPlan:Env1_Output \
-       Type="Output" \
-       UseNodeNestLevel=yes \
-       NodeNestLevel=2 \
-       UseEquationNestLevel=yes \
-       EquationNestLevel=2 \
-       UseSavedEquationNestLevel=yes \
-       SavedEquationNestLevel=2 \
-       UseDeviceCurrentNestLevel=no \
-       DeviceCurrentNestLevel=0 \
-       DeviceCurrentDeviceType="All" \
-       DeviceCurrentSymSyntax=yes \
-       UseCurrentNestLevel=yes \
-       CurrentNestLevel=999 \
-       UseDeviceVoltageNestLevel=no \
-       DeviceVoltageNestLevel=0 \
-       DeviceVoltageDeviceType="All" 
-
-SweepPlan:Env1_stim Stop=tstop Step=1 nsec
-
-Tran:Env1_tran HB_Sol=1 SteadyState=1 StatusLevel=3 \
- Freq[1]=fvco \
- Order[1]=1 \
- OutputPlan="Env1_Output"
-
-Component:tahb_Env1 Module="ATAHB" Type="ModelExtractor" Tran_Analysis="Env1_tran" HB_Analysis="Env1"
-
-loop_filter:LP_real  N__9 Vd 0 R=1k C1=1000p C2=100p 
-#uselib "sml" , "ResetSwitch"
-ResetSwitch:SWITCH1  0 Vd 
-V_Source:SRC1  Vref 0 Type="V_DC" Vdc=Vref SaveCurrent=1 
-
+Vdd=2.5 V
+Vc=1.5 V
+Vd=0 V
 fref=156.25 MHz
-tstop=6 usec
-fvco=6.25 GHz
-Vref=phaserad(-exp(j*2*pi*fref*time))
-Short:I_CP  N__12 N__9 Mode=0 SaveCurrent=yes 
+V_Source:SRC2  Vdd 0 Type="V_DC" Vdc=Vdd SaveCurrent=1 
+V_Source:SRC5  N__5 N__10 Type="V_DC" Vdc=-Vd/2 SaveCurrent=1 
+OpAmp:X3  N__1 N__5 Vout Vdd 0 
+V_Source:SRC4  N__1 N__10 Type="V_DC" Vdc=Vd/2 SaveCurrent=1 
+V_Source:SRC3  N__10 0 Type="V_DC" Vdc=Vc SaveCurrent=1 
+DC:DC1 StatusLevel=2 DevOpPtLevel=0 UseFiniteDiff=no PrintOpPoint=no Restart=1 \
+SweepVar="Vd" SweepPlan="DC1_stim" OutputPlan="DC1_Output" 
+
+SweepPlan: DC1_stim Start=-10 mV Stop=+10 mV Step=10 uV 
+
+OutputPlan:DC1_Output \
+      Type="Output" \
+      UseNodeNestLevel=yes \
+      NodeNestLevel=2 \
+      NodeName[1]="Vdd" \
+      UseEquationNestLevel=yes \
+      EquationNestLevel=2 \
+      UseSavedEquationNestLevel=yes \
+      SavedEquationNestLevel=2 \
+      UseDeviceCurrentNestLevel=no \
+      DeviceCurrentNestLevel=0 \
+      DeviceCurrentDeviceType="All" \
+      DeviceCurrentSymSyntax=yes \
+      UseCurrentNestLevel=yes \
+      CurrentNestLevel=999 \
+      UseDeviceVoltageNestLevel=no \
+      DeviceVoltageNestLevel=0 \
+      DeviceVoltageDeviceType="All"
+

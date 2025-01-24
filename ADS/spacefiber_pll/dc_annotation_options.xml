@@ -1,9 +1,10 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <dc_annotation_options>
- <options view="schematic" ToggleVoltage="true" library="spacefiber_pll_lib" ToggleCurrent="true" cell="charge_pump_test"/>
- <options view="schematic" ToggleVoltage="false" library="spacefiber_pll_lib" ToggleCurrent="false" cell="pll_cp_real"/>
- <options view="schematic" ToggleVoltage="false" library="spacefiber_pll_lib" cell="pll_ideal"/>
- <options view="schematic" ToggleVoltage="false" library="spacefiber_pll_lib" cell="pll_cp_pfd_real"/>
- <options view="schematic" ToggleVoltage="false" library="spacefiber_pll_lib" cell="pll_cp_real_trans"/>
- <options view="schematic" ToggleVoltage="true" library="spacefiber_pll_lib" cell="pll_real"/>
+ <options cell="charge_pump_test" ToggleVoltage="true" ToggleCurrent="true" library="spacefiber_pll_lib" view="schematic"/>
+ <options cell="pll_cp_real" ToggleVoltage="false" ToggleCurrent="false" library="spacefiber_pll_lib" view="schematic"/>
+ <options cell="pll_ideal" ToggleVoltage="false" library="spacefiber_pll_lib" view="schematic"/>
+ <options cell="pll_cp_pfd_real" ToggleVoltage="false" library="spacefiber_pll_lib" view="schematic"/>
+ <options cell="pll_cp_real_trans" ToggleVoltage="false" library="spacefiber_pll_lib" view="schematic"/>
+ <options cell="pll_real" ToggleVoltage="false" library="spacefiber_pll_lib" view="schematic"/>
+ <options cell="opamp_test" ToggleVoltage="true" ToggleCurrent="true" library="spacefiber_pll_lib" view="schematic"/>
 </dc_annotation_options>

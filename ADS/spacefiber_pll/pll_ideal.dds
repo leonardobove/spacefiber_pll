@@ -10,7 +10,7 @@ ddoId = get_new(ddsId, "Object");
 // DataDisplay Object:
 	set(ddoId, "Path", dds_get_exec_path(what_file(0)));
 	set(ddoId, "Name", dds_get_exec_file(what_file(0)));
-	set(ddoId, "FileModifiedDateAndTime", "2025-01-23T14:11:54Z");
+	set(ddoId, "FileModifiedDateAndTime", "2025-01-24T01:02:13Z");
 	set(ddoId, "FileCreatedDateAndTime", "2025-01-12T21:21:14Z");
 	dssId = get(ddoId, "DatasetServer");
 // Default Dataset
@@ -805,8 +805,8 @@ markerID = get_new(traceID, "MarkerNew", "m1", "0.000005596999999999999944719133
 		set(markerID, "MkrReadoutFillColor", 0);
 		set(markerID, "MkrReadoutFillPattern", -1);
 		set(markerID, "MkrReadoutLeft", 1000);
-		set(markerID, "MkrReadoutRight", 2492);
-		set(markerID, "MkrReadoutBottom", 12287);
+		set(markerID, "MkrReadoutRight", 2524);
+		set(markerID, "MkrReadoutBottom", 12319);
 		set(markerID, "MkrReadoutTop", 11750);
 		set(markerID, "MkrIndicatorColor", 0);
 		set(markerID, "MkrIndicatorSize", 6);
@@ -1062,8 +1062,8 @@ markerID = get_new(traceID, "MarkerNew", "m2", "0.000004744000000000000657768978
 		set(markerID, "MkrReadoutFillColor", 0);
 		set(markerID, "MkrReadoutFillPattern", -1);
 		set(markerID, "MkrReadoutLeft", 5875);
-		set(markerID, "MkrReadoutRight", 7581);
-		set(markerID, "MkrReadoutBottom", 12287);
+		set(markerID, "MkrReadoutRight", 7613);
+		set(markerID, "MkrReadoutBottom", 12319);
 		set(markerID, "MkrReadoutTop", 11750);
 		set(markerID, "MkrIndicatorColor", 0);
 		set(markerID, "MkrIndicatorSize", 6);
@@ -1086,11 +1086,11 @@ markerID = get_new(traceID, "MarkerNew", "m2", "0.000004744000000000000657768978
 	set(ddoId, "UpdateAllExpressions", TRUE);
 	set(ddoId, "EnableExpressionUpdates", TRUE);
 
-ddWinId = get_new(ddsId, "Window", 247, 117, 1536, 864);
+ddWinId = get_new(ddsId, "Window", 247, 117, 1370, 749);
 	set(ddWinId, "Object", ddoId);
 	set(ddWinId, "CurrentPage", 1057782532);
-	set(ddWinId, "PageViewRect_1057782532", list(-1250, 12794, 15502, 5585));
-	set(ddWinId, "Frame", list(247, 117, 1536, 864));
+	set(ddWinId, "PageViewRect_1057782532", list(1986, 11563, 22947, 1321));
+	set(ddWinId, "Frame", list(247, 117, 1370, 749));
 	set(ddWinId, "Maximized", TRUE);
 	set(ddWinId, "ForegroundColor", 0);
 	set(ddWinId, "BackgroundColor", 8);

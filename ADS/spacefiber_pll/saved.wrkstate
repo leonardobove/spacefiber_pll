@@ -1,5 +1,7 @@
 <!DOCTYPE SaveWorkspaceState>
 <SaveWorkspaceState>
-    <Windows/>
+    <Windows>
+        <Schematic lib="spacefiber_pll_lib" y1="-8" width="1366" view="schematic" x1="-1" cell="pll_real" height="705" geom="1,0,3,709,446,961,471,1366,768"/>
+    </Windows>
     <MainWindowTab tab="1"/>
 </SaveWorkspaceState>

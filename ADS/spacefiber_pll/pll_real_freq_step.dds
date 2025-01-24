@@ -10,7 +10,7 @@ ddoId = get_new(ddsId, "Object");
 // DataDisplay Object:
 	set(ddoId, "Path", dds_get_exec_path(what_file(0)));
 	set(ddoId, "Name", dds_get_exec_file(what_file(0)));
-	set(ddoId, "FileModifiedDateAndTime", "2025-01-22T20:35:09Z");
+	set(ddoId, "FileModifiedDateAndTime", "2025-01-24T00:07:10Z");
 	set(ddoId, "FileCreatedDateAndTime", "2025-01-22T19:02:34Z");
 	dssId = get(ddoId, "DatasetServer");
 // Default Dataset
@@ -99,7 +99,7 @@ axisID = get_new(goId0, "Axis", ddsYaxis, "Y Axis");
 		 set(axisID, "TickFontSize", 112);
 		 set(axisID, "AutoscaleOnOff", TRUE);
 		 set(axisID, "MinValue", 5.8);
-		 set(axisID, "MaxValue", 7.4);
+		 set(axisID, "MaxValue", 6.8);
 		 set(axisID, "StepSize", 0.2);
 		 set(axisID, "Logarithmic", FALSE);
 		 set(axisID, "Font", "Arial For CAE");
@@ -202,7 +202,7 @@ goId0 = get_new(pageId, "Plot");
 // Graphical Object:
 	set(goId0, "Right", 9600);
 	set(goId0, "Bottom", 3879);
-	set(goId0, "Left", 5184);
+	set(goId0, "Left", 5148);
 	set(goId0, "Top", 875);
 	set(goId0, "Zrot", 0);
 	set(goId0, "Yrot", 0);
@@ -216,7 +216,7 @@ goId0 = get_new(pageId, "Plot");
 	set(goId0, "FillColor", 0);
 // Plot base...
 	set(goId0, "LegendOnOff", TRUE);
-	set(goId0, "LeftMargin", 566);
+	set(goId0, "LeftMargin", 602);
 	set(goId0, "RightMargin", 100);
 	set(goId0, "TopMargin", 125);
 	set(goId0, "BottomMargin", 504);
@@ -263,8 +263,8 @@ axisID = get_new(goId0, "Axis", ddsYaxis, "Y Axis");
 		 set(axisID, "LineType", 0);
 		 set(axisID, "TickFontSize", 112);
 		 set(axisID, "AutoscaleOnOff", TRUE);
-		 set(axisID, "MinValue", 0);
-		 set(axisID, "MaxValue", 0.7);
+		 set(axisID, "MinValue", -0.1);
+		 set(axisID, "MaxValue", 0.5);
 		 set(axisID, "StepSize", 0.1);
 		 set(axisID, "Logarithmic", FALSE);
 		 set(axisID, "Font", "Arial For CAE");
@@ -474,8 +474,8 @@ axisID = get_new(goId0, "Axis", ddsXaxis, "Bottom X Axis");
 		 set(axisID, "LineType", 0);
 		 set(axisID, "TickFontSize", 112);
 		 set(axisID, "AutoscaleOnOff", FALSE);
-		 set(axisID, "MinValue", -0.5795);
-		 set(axisID, "MaxValue", -0.5765);
+		 set(axisID, "MinValue", -0.58);
+		 set(axisID, "MaxValue", -0.577);
 		 set(axisID, "StepSize", 0.0005);
 		 set(axisID, "Logarithmic", FALSE);
 		 set(axisID, "Font", "Arial For CAE");
@@ -522,12 +522,12 @@ traceID = get_new(goId0, "Trace", "V_ref", "X Axis", "Y Axis");
 		}
 		set(traceID, "TraceLabelOffset", 100);
 	}
-traceID = get_new(goId0, "Trace", "VCO_div", "X Axis", "Y Axis");
+traceID = get_new(goId0, "Trace", "I_CP.i", "X Axis", "Right Y Axis");
 // Trace:
 	if (traceID != NULL) {
 		set(traceID, "TraceType", ddsAutomaticTraceType);
-		set(traceID, "Color", 5);
-		set(traceID, "Uid", 2095192168);
+		set(traceID, "Color", 6);
+		set(traceID, "Uid", 731213655);
 		set(traceID, "UIIndex", 0);
 		set(traceID, "Status", 536913920);
 	}
@@ -562,12 +562,12 @@ traceID = get_new(goId0, "Trace", "VCO_div", "X Axis", "Y Axis");
 		}
 		set(traceID, "TraceLabelOffset", 100);
 	}
-traceID = get_new(goId0, "Trace", "I_CP.i", "X Axis", "Right Y Axis");
+traceID = get_new(goId0, "Trace", "fb", "X Axis", "Y Axis");
 // Trace:
 	if (traceID != NULL) {
 		set(traceID, "TraceType", ddsAutomaticTraceType);
-		set(traceID, "Color", 6);
-		set(traceID, "Uid", 731213655);
+		set(traceID, "Color", 5);
+		set(traceID, "Uid", 1153191082);
 		set(traceID, "UIIndex", 0);
 		set(traceID, "Status", 536913920);
 	}
@@ -777,12 +777,12 @@ traceID = get_new(goId0, "Trace", "VCO", "X Axis", "Y Axis");
 	set(ddoId, "UpdateAllExpressions", TRUE);
 	set(ddoId, "EnableExpressionUpdates", TRUE);
 
-ddWinId = get_new(ddsId, "Window", 147, 22, 1536, 864);
+ddWinId = get_new(ddsId, "Window", 147, 22, 1370, 749);
 	set(ddWinId, "Object", ddoId);
 	set(ddWinId, "CurrentPage", 248924638);
-	set(ddWinId, "PageViewRect_248924638", list(-2122, 8960, 14291, 86));
-	set(ddWinId, "Frame", list(147, 22, 1536, 864));
-	set(ddWinId, "Maximized", FALSE);
+	set(ddWinId, "PageViewRect_248924638", list(-3014, 8968, 15182, 79));
+	set(ddWinId, "Frame", list(147, 22, 1370, 749));
+	set(ddWinId, "Maximized", TRUE);
 	set(ddWinId, "ForegroundColor", 0);
 	set(ddWinId, "BackgroundColor", 8);
 	set(ddWinId, "WindowPageOrder", list("page 1"));

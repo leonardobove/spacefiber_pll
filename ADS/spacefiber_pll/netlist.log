@@ -1,74 +1,43 @@
-; Top Design: "spacefiber_pll_lib:opamp_test:schematic"
+; Top Design: "spacefiber_pll_lib:pll_pd:schematic"
 ; Netlisted using Hierarchy Policy: "Standard_ic"
 
-Options ResourceUsage=yes UseNutmegFormat=no EnableOptim=no TopDesignName="spacefiber_pll_lib:opamp_test:schematic" DcopOutputNodeVoltages=yes DcopOutputPinCurrents=yes DcopOutputAllSweepPoints=no DcopOutputDcopType=0
-simulator lang = spectre
-global 0 sub!
-simulator lang = ads
-; Library Name: spacefiber_pll_lib
-; Cell Name: OpAmp
-; View Name: schematic
-define OpAmp ( Vpos  Vneg  Vout  Vdd  Vss ) 
-;parameters 
-simulator lang = spectre
-P6 (N__6 Vk2 Vdd sub_n) pmos w=22.9u l=1u ng=1 rfmode=0 ad=0 as=0 pd=0 ps=0 m=1
-P5 (Vk2 Vk2 Vdd sub_n) pmos w=22.9u l=1u ng=1 rfmode=0 ad=0 as=0 pd=0 ps=0 m=1
-N12 (N__6 Vpos N__16 sub!) nmos w=2.15u l=1u ng=1 rfmode=0 ad=0 as=0 pd=0 ps=0 m=1
-N11 (Vk2 Vneg N__16 sub!) nmos w=2.15u l=1u ng=1 rfmode=0 ad=0 as=0 pd=0 ps=0 m=1
-N10 (N__16 N__22 Vss sub!) nmos w=4.3u l=1u ng=1 rfmode=0 ad=0 as=0 pd=0 ps=0 m=1
-simulator lang = ads
-I_Source:SRC1  Vdd N__22 Type="I_DC" Idc=11 uA 
-simulator lang = spectre
-global 0 sub!
-include "C:/PDK_ADS/sg25h4_students/tech/spectre/mismatch.scs"
-include "C:/PDK_ADS/sg25h4_students/tech/spectre/cornerDIO.scs" section=11
-include "C:/PDK_ADS/sg25h4_students/tech/SG25_MOS/library/spectre/cornerMOS_psp.scs" section=tt
-include "C:/PDK_ADS/sg25h4_students/tech/SG25H4_HBT/spectre/cornerBIP.scs" section=typ
-include "C:/PDK_ADS/sg25h4_students/tech/spectre/cornerRES.scs" section=11
-include "C:/PDK_ADS/sg25h4_students/tech/spectre/cornerCAP.scs" section=11
-include "C:/PDK_ADS/sg25h4_students/tech/spectre/cornerRCX.scs" section=11
-include "C:/PDK_ADS/sg25h4_students/tech/spectre/statistics.scs"
-include "C:/PDK_ADS/sg25h4_students/tech/spectre/SG25H4_parameters.scs"
-include "C:/PDK_ADS/sg25h4_students/tech/spectre/SG25_passives.lib"
-include "C:/PDK_ADS/sg25h4_students/tech/spectre/SG25_inductors.lib"
-include "C:/PDK_ADS/sg25h4_students/tech/spectre/SG25_diodes.lib"
-include "C:/PDK_ADS/sg25h4_students/tech/spectre/SG25_esd.lib"
-N9 (N__22 N__22 Vss sub!) nmos w=2.15u l=1u ng=1 rfmode=0 ad=0 as=0 pd=0 ps=0 m=1
-X3 (sub! 0) ptap1 R=262.847 l=780n w=780n
-X5 (Vdd sub_n) ntap1 R=262.847 l=780n w=780n
-N13 (Vk2 N__22 Vss sub!) nmos w=6.45u l=1u ng=1 rfmode=0 ad=0 as=0 pd=0 ps=0 m=1
-N14 (Vk2 N__22 Vss sub!) nmos w=2.15u l=1u ng=1 rfmode=0 ad=0 as=0 pd=0 ps=0 m=1
-P7 (Vk2 Vk2 Vdd sub_n) pmos w=5.5u l=1u ng=1 rfmode=0 ad=0 as=0 pd=0 ps=0 m=1
-P8 (Vk2 Vk2 Vdd sub_n) pmos w=11.45u l=1u ng=1 rfmode=0 ad=0 as=0 pd=0 ps=0 m=1
-P9 (N__10 Vk2 N__6 sub_n) pmos w=11.45u l=1u ng=1 rfmode=0 ad=0 as=0 pd=0 ps=0 m=1
-P10 (Vout Vk2 Vk2 sub_n) pmos w=11.45u l=1u ng=1 rfmode=0 ad=0 as=0 pd=0 ps=0 m=1
-N15 (N__10 N__10 N__32 sub!) nmos w=2.15u l=1u ng=1 rfmode=0 ad=0 as=0 pd=0 ps=0 m=1
-N16 (Vout N__10 N__1 sub!) nmos w=2.15u l=1u ng=1 rfmode=0 ad=0 as=0 pd=0 ps=0 m=1
-N17 (N__32 N__32 Vss sub!) nmos w=2.15u l=1u ng=1 rfmode=0 ad=0 as=0 pd=0 ps=0 m=1
-N18 (N__1 N__32 Vss sub!) nmos w=2.15u l=1u ng=1 rfmode=0 ad=0 as=0 pd=0 ps=0 m=1
-simulator lang = ads
-end OpAmp
+Options ResourceUsage=yes UseNutmegFormat=no EnableOptim=no TopDesignName="spacefiber_pll_lib:pll_pd:schematic" DcopOutputNodeVoltages=yes DcopOutputPinCurrents=yes DcopOutputAllSweepPoints=no DcopOutputDcopType=0
+#uselib "sml" , "ResetSwitch"
+ResetSwitch:SWITCH1  N__11 Vpd_filtered 
+#uselib "ckt" , "OpAmpIdeal"
+OpAmpIdeal:AMP1  Vd N__9 Vd 0 0 Gain=100000 Delay=0 sec 
+C:C  0 Vpd_filtered C=102 pF 
+V_Source:SRC4  N__11 0 Type="V_DC" Vdc=Vdd/2 SaveCurrent=1 
+R:R  Vpd Vpd_filtered R=1 kOhm Noise=yes 
+SchmittBuf_L:SchmittBuf_L_3  N__0 V_ref Vhigh=Vdd Vlow=0 
 
-
-Vdd=2.5 V
-Vc=1.5 V
-Vd=0 V
 fref=156.25 MHz
+f0=5.95 GHz
+Vdd=2.5V
+StopTime=20 usec
+fvco=6.25 GHz
+Vref=phaserad(exp(j*2*pi*(f0/N)*time))
+delta_f=1.25 MHz
+Vref_fin=phaserad(exp(j*2*pi*(fref)*time))
+Kv=2 GHz
+TimeStep=0.1/fvco
+N=40
+
+SRFlipFlop_L:SRFFLa1 V_ref fb N__3 Vpd 0  Vhigh=Vdd Vlow=0 Trise=0.035/fref Tfall=0.035/fref pri=0 
 V_Source:SRC2  Vdd 0 Type="V_DC" Vdc=Vdd SaveCurrent=1 
-V_Source:SRC5  N__5 N__10 Type="V_DC" Vdc=-Vd/2 SaveCurrent=1 
-OpAmp:X3  N__1 N__5 Vout Vdd 0 
-V_Source:SRC4  N__1 N__10 Type="V_DC" Vdc=Vd/2 SaveCurrent=1 
-V_Source:SRC3  N__10 0 Type="V_DC" Vdc=Vc SaveCurrent=1 
-DC:DC1 StatusLevel=2 DevOpPtLevel=0 UseFiniteDiff=no PrintOpPoint=no Restart=1 \
-SweepVar="Vd" SweepPlan="DC1_stim" OutputPlan="DC1_Output" 
+SchmittBuf_L:SchmittBuf_L_2  VCO_div fb Vhigh=Vdd Vlow=0 
+Tran:Tran1 StartTime=0 usec StopTime=StopTime MaxTimeStep=TimeStep LimitStepForTL=yes TimeStepControl=2 TruncTol=7.0 ChargeTol=1.0e-14 IntegMethod=0 MaxGearOrder=2 \
+Mu=0.5 MaxOrder=4 Freq[1]=1.0 GHz Order[1]=3 HB_Window=no \
+HB_Sol=no ImpApprox=no ShortTL_Delay=1.0 psec ImpMode=1 UseInitCond=no \
+LoadGminDC=no CheckKCL=yes CheckOnlyDeltaV=yes OverloadAlert=no DeviceBypass=no \
+MaxIters=10 MaxItersDC=200 DevOpPtLevel=0 StatusLevel=2 OutputAllPoints=yes \
+NoiseScale=1 ImpEnforcePassivity=yes ImpSkipTotalEnergy=1000 ImpLFEOn=yes \
+OutputPlan="Tran1_Output" 
 
-SweepPlan: DC1_stim Start=-10 mV Stop=+10 mV Step=10 uV 
-
-OutputPlan:DC1_Output \
+OutputPlan:Tran1_Output \
       Type="Output" \
       UseNodeNestLevel=yes \
       NodeNestLevel=2 \
-      NodeName[1]="Vdd" \
       UseEquationNestLevel=yes \
       EquationNestLevel=2 \
       UseSavedEquationNestLevel=yes \
@@ -83,3 +52,11 @@ OutputPlan:DC1_Output \
       DeviceVoltageNestLevel=0 \
       DeviceVoltageDeviceType="All"
 
+#uselib "sml" , "VCO_DivideByN"
+VCO_DivideByN:VCO  Vd 0 VCO_div VCO freq_VCO VCO_Freq=Kv * _v1 F0=f0 N=N Rout=50 Ohm Power=dbmtow(0) Delay=0 nsec 
+V_Source:SRC1  N__0 0 Type="VtStep" V_Tran=pulse(time, Vref, Vref_fin, 10 usec, TimeStep) SaveCurrent=1 
+C:C2  0 N__9 C=4 pF 
+R:R3  Ve N__9 R=1 kOhm Noise=yes 
+#uselib "sml" , "VSum"
+VSum:SUM1  Vpd_filtered N__17 Ve 
+V_Source:SRC3  N__17 0 Type="V_DC" Vdc=-Vdd/2 SaveCurrent=1 

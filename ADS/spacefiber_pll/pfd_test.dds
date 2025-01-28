@@ -10,7 +10,7 @@ ddoId = get_new(ddsId, "Object");
 // DataDisplay Object:
 	set(ddoId, "Path", dds_get_exec_path(what_file(0)));
 	set(ddoId, "Name", dds_get_exec_file(what_file(0)));
-	set(ddoId, "FileModifiedDateAndTime", "2025-01-23T20:27:31Z");
+	set(ddoId, "FileModifiedDateAndTime", "2025-01-25T17:58:34Z");
 	set(ddoId, "FileCreatedDateAndTime", "2025-01-23T20:26:47Z");
 	dssId = get(ddoId, "DatasetServer");
 // Default Dataset
@@ -325,9 +325,9 @@ traceID = get_new(goId0, "Trace", "Qb", "X Axis", "Y Axis");
 ddWinId = get_new(ddsId, "Window", 136, 76, 1092, 614);
 	set(ddWinId, "Object", ddoId);
 	set(ddWinId, "CurrentPage", 1600968026);
-	set(ddWinId, "PageViewRect_1600968026", list(0, 5491, 10322, 0));
+	set(ddWinId, "PageViewRect_1600968026", list(413, 4235, 7491, 724));
 	set(ddWinId, "Frame", list(136, 76, 1092, 614));
-	set(ddWinId, "Maximized", FALSE);
+	set(ddWinId, "Maximized", TRUE);
 	set(ddWinId, "ForegroundColor", 0);
 	set(ddWinId, "BackgroundColor", 8);
 	set(ddWinId, "WindowPageOrder", list("page 1"));

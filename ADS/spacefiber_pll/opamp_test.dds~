@@ -10,7 +10,7 @@ ddoId = get_new(ddsId, "Object");
 // DataDisplay Object:
 	set(ddoId, "Path", dds_get_exec_path(what_file(0)));
 	set(ddoId, "Name", dds_get_exec_file(what_file(0)));
-	set(ddoId, "FileModifiedDateAndTime", "2025-01-23T21:11:47Z");
+	set(ddoId, "FileModifiedDateAndTime", "2025-01-23T21:13:46Z");
 	set(ddoId, "FileCreatedDateAndTime", "2025-01-23T20:49:37Z");
 	dssId = get(ddoId, "DatasetServer");
 // Default Dataset
@@ -289,7 +289,7 @@ axisID = get_new(goId0, "Axis", ddsYaxis, "Y Axis");
 		 set(axisID, "TickFontSize", 112);
 		 set(axisID, "AutoscaleOnOff", TRUE);
 		 set(axisID, "MinValue", 0);
-		 set(axisID, "MaxValue", 60);
+		 set(axisID, "MaxValue", 50);
 		 set(axisID, "StepSize", 10);
 		 set(axisID, "Logarithmic", FALSE);
 		 set(axisID, "Font", "Arial For CAE");
@@ -387,7 +387,7 @@ traceID = get_new(goId0, "Trace", "gain", "X Axis", "Y Axis");
 	set(goId0, "InitPlot", 0);
 goId0 = get_new(pageId, "Equation");
 // Expression...
-	set(goId0, "Expression", "V_offset = get_indep_values(Vout, 2.5/2,10e-6, 0)");
+	set(goId0, "Expression", "V_offset = get_indep_values(Vout, 2.5/2,10e-4, 0)");
 	set(goId0, "Font", "Arial For CAE");
 	set(goId0, "FontSize", 167);
 	set(goId0, "TextColor", 0);
@@ -459,7 +459,7 @@ goId0 = get_new(pageId, "Listing");
 axisID = get_new(goId0, "Axis", ddsXaxis, "");
 // Axis...
 	if (axisID != NULL) {
-		 set(axisID, "Uid", 1864052255);
+		 set(axisID, "Uid", 435337305);
 		 set(axisID, "Color", 104);
 		 set(axisID, "UserLabel", "");
 		 set(axisID, "LabelColor", 0);
@@ -504,7 +504,7 @@ traceID = get_new(goId0, "Trace", "V_offset", "", "");
 ddWinId = get_new(ddsId, "Window", 136, 22, 1092, 614);
 	set(ddWinId, "Object", ddoId);
 	set(ddWinId, "CurrentPage", 1482906324);
-	set(ddWinId, "PageViewRect_1482906324", list(-51, 5354, 10338, -172));
+	set(ddWinId, "PageViewRect_1482906324", list(-52, 5355, 10338, -172));
 	set(ddWinId, "Frame", list(136, 22, 1092, 614));
 	set(ddWinId, "Maximized", FALSE);
 	set(ddWinId, "ForegroundColor", 0);
